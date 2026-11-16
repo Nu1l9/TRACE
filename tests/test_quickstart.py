@@ -75,7 +75,7 @@ class QuickstartTests(unittest.TestCase):
     def test_update_delta_preserves_registered_baseline_source_paths(self):
         from extensions.input_contract import normalize_request as compile_request
         from extensions.update import updated_request
-        from metapipeline.contracts import normalize_request
+        from trace_runtime.contracts import normalize_request
         base, _ = self.prepare('base')
         extra, _ = self.prepare('extra', include_author_manuscript=True)
         old = normalize_request(compile_request(json.loads((base / 'request.json').read_text())), base)

@@ -6,7 +6,7 @@ import json
 
 
 def stage_signature(request, stage):
-    from metapipeline.contracts import screening_protocol
+    from trace_runtime.contracts import screening_protocol
     documents = []
     for item in request['documents']:
         paths = item.get('paths', {})

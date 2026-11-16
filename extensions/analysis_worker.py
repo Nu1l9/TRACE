@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from extensions.common import ROOT, ANALYSIS, read, write, require, digest
 from extensions.settings import load_settings
-from metapipeline.contracts import normalize_request, write_analysis_input
+from trace_runtime.contracts import normalize_request, write_analysis_input
 from contract_adapter import load_analysis_contract
 from analysis_core.plan_resolver import resolve_analysis_plan_structured
 from analysis_engine.fixed_policy import POLICY, POLICY_HASH
@@ -189,7 +189,7 @@ def execute_analysis(input_dir,output,*,patch=None,assessments=None,ledger=None,
         from extensions.statistics_audit import write_statistics_quality_audit
         write_statistics_quality_audit(output, read(output/'analysis_result.json'))
         original_metadata=read(output/'run_metadata.json') if (output/'run_metadata.json').is_file() else {}
-        write_run_metadata(output,{'release':'meta_pipeline_release','frozen_analysis':'fixed_policy' if method_policy=='fixed' else 'source_aware_selection',
+        write_run_metadata(output,{'release':'trace_release','frozen_analysis':'fixed_policy' if method_policy=='fixed' else 'source_aware_selection',
                                    'mode':'synthetic_offline' if offline else 'live','model_calls':{'reused_completed_analysis':0},
                                    'method_selector_llm_calls':original_metadata.get('method_selector_llm_calls',0),
                                    'protocol_fingerprint':digest(protocol),'primary_evidence_mutated':False,
@@ -215,7 +215,7 @@ def execute_analysis(input_dir,output,*,patch=None,assessments=None,ledger=None,
     if agent.last_candidate_sets is not None:write(output/'embedding_retrieval.json',embedding_retrieval_artifact(agent.last_candidate_sets))
     counts={name:getattr(component,'calls_made',None) for name,component in components.items()}
     counts['method_selector']=agent.method_selector.calls_made
-    metadata={'release':'meta_pipeline_release','frozen_analysis':'fixed_policy' if method_policy=='fixed' else 'source_aware_selection','mode':'synthetic_offline' if offline else 'live','model_calls':counts,'embedding':components['embeddings'].diagnostics() if hasattr(components['embeddings'],'diagnostics') else {'remote_calls':0},'protocol_fingerprint':digest(protocol),'primary_evidence_mutated':False,'graph_feedback_enabled':bool(patch)}
+    metadata={'release':'trace_release','frozen_analysis':'fixed_policy' if method_policy=='fixed' else 'source_aware_selection','mode':'synthetic_offline' if offline else 'live','model_calls':counts,'embedding':components['embeddings'].diagnostics() if hasattr(components['embeddings'],'diagnostics') else {'remote_calls':0},'protocol_fingerprint':digest(protocol),'primary_evidence_mutated':False,'graph_feedback_enabled':bool(patch)}
     write_run_metadata(output,metadata,method_policy)
     return summary
 

@@ -11,7 +11,7 @@ import re
 from collections.abc import Mapping
 from typing import Any
 
-from metapipeline.contracts import evidence_handoff as _frozen_evidence_handoff
+from trace_runtime.contracts import evidence_handoff as _frozen_evidence_handoff
 
 
 def _text(value: Any) -> str:
@@ -80,6 +80,6 @@ def evidence_handoff(request: dict[str, Any], screening: dict[str, Any], submiss
 
 def install() -> None:
     """Install the Graph wrapper into the frozen runner without editing vendor code."""
-    import metapipeline.pipeline as pipeline
+    import trace_runtime.pipeline as pipeline
 
     pipeline.evidence_handoff = evidence_handoff

@@ -5,8 +5,8 @@ import subprocess
 import sys
 import tempfile
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from metapipeline.contracts import read,write,normalize_request,prepare_extraction
-from metapipeline.pipeline import runtime_environment,WORKER,ANALYSIS
+from trace_runtime.contracts import read,write,normalize_request,prepare_extraction
+from trace_runtime.pipeline import runtime_environment,WORKER,ANALYSIS
 
 def main():
     results=[]

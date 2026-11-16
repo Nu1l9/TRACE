@@ -18,7 +18,7 @@ class CallbackTransportTests(unittest.TestCase):
                 client = Mock()
                 client.chat.completions.create.side_effect = GatewayTimeout()
                 env = dict(TEXT_PROVIDER_API_KEY='text-key', TEXT_PROVIDER_BASE_URL='https://example.invalid/v1',
-                    META_PIPELINE_TEXT_PRIMARY_ATTEMPTS='3')
+                    TRACE_TEXT_PRIMARY_ATTEMPTS='3')
                 with patch('openai.OpenAI', return_value=client) as factory, \
                      patch('extensions.transport.time.sleep'), \
                      patch('extensions.rob_schema.provider_format', return_value={'type':'json_schema'}):

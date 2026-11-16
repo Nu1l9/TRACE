@@ -27,11 +27,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from extensions.common import activate
 activate()
-from metapipeline.contracts import ContractError, digest, read, require, write
+from trace_runtime.contracts import ContractError, digest, read, require, write
 
 
-STATE_SCHEMA = "meta_pipeline/article_extraction_state/1.0"
-BATCH_SCHEMA = "meta_pipeline/extraction_batch/1.0"
+STATE_SCHEMA = "trace/article_extraction_state/1.0"
+BATCH_SCHEMA = "trace/extraction_batch/1.0"
 EXTRACTION_CONTRACT_VERSION = "source_transcription/2.2"
 _FAMILY_CHECKPOINT_DIR: ContextVar[Path | None] = ContextVar("resilient_family_checkpoint_dir", default=None)
 _OUTPUT_MODEL_CACHE: dict[tuple, Any] = {}
@@ -134,7 +134,7 @@ def retry_delay_seconds(exc: Exception, attempt: int) -> float:
 
 
 def _call_attempts(request: dict) -> int:
-    raw = os.environ.get("META_PIPELINE_EXTRACT_CALL_ATTEMPTS")
+    raw = os.environ.get("TRACE_EXTRACT_CALL_ATTEMPTS")
     if raw is None:
         # The archived request contract commonly has max_retries=3.  Combining
         # that with its former article-wide retry loop was the main source of
@@ -147,29 +147,29 @@ def _call_attempts(request: dict) -> int:
     try:
         return max(1, int(raw))
     except ValueError as exc:
-        raise ContractError("META_PIPELINE_EXTRACT_CALL_ATTEMPTS must be an integer") from exc
+        raise ContractError("TRACE_EXTRACT_CALL_ATTEMPTS must be an integer") from exc
 
 
 def _batch_budget() -> int:
-    raw = os.environ.get("META_PIPELINE_EXTRACT_BATCH_CHARS", "20000")
+    raw = os.environ.get("TRACE_EXTRACT_BATCH_CHARS", "20000")
     try:
         return max(4000, int(raw))
     except ValueError as exc:
-        raise ContractError("META_PIPELINE_EXTRACT_BATCH_CHARS must be an integer") from exc
+        raise ContractError("TRACE_EXTRACT_BATCH_CHARS must be an integer") from exc
 
 
 def _extract_timeout_seconds() -> float:
     """Wait for an upstream response before imposing a local extraction timeout."""
-    raw = os.environ.get("META_PIPELINE_EXTRACT_TIMEOUT_SECONDS", "300")
+    raw = os.environ.get("TRACE_EXTRACT_TIMEOUT_SECONDS", "300")
     try:
         return max(1.0, float(raw))
     except ValueError as exc:
-        raise ContractError("META_PIPELINE_EXTRACT_TIMEOUT_SECONDS must be a number") from exc
+        raise ContractError("TRACE_EXTRACT_TIMEOUT_SECONDS must be a number") from exc
 
 
 def _load_runtime(request: dict):
     """Load the frozen runtime chosen by the existing request contract."""
-    from metapipeline.worker import load_extractor
+    from trace_runtime.worker import load_extractor
 
     load_case_config, frozen_run_article = load_extractor(request)
     controller = sys.modules[frozen_run_article.__module__]
@@ -886,7 +886,7 @@ def _cached_family_extract(model, output_model, prompt, inputs, family):
     parsed = _validate_exact_family(parsed, family)
     if path is not None:
         path.parent.mkdir(parents=True, exist_ok=True)
-        write(path, {"schema_version": "meta_pipeline/extraction_family/1.0",
+        write(path, {"schema_version": "trace/extraction_family/1.0",
                      "input_fingerprint": fingerprint, "family": family,
                      "status": "completed", "extraction": parsed.model_dump()})
     return parsed
@@ -1111,7 +1111,7 @@ def _attach_prediction_sources(predictions, catalog, plan, work: Path) -> None:
     context_by_id = {sid: batch.get("context_source_ids", [])
                      for batch in plan for sid in batch["source_ids"]}
     evidence_path = work / "source_evidence.json"
-    write(evidence_path, {"schema_version": "meta_pipeline/source_evidence/1.0",
+    write(evidence_path, {"schema_version": "trace/source_evidence/1.0",
                          "sources": _compact_extraction_sources(catalog)})
     for prediction in predictions:
         location = prediction.get("source_location")
@@ -1458,7 +1458,7 @@ def run_article(request: dict, task, article_id: str, work: Path, runtime=None) 
     if not state["batches"]:
         state["batches"] = [{**batch, "status": "pending", "attempts": []} for batch in plan]
         write(work / "batch_manifest.json", {
-            "schema_version": "meta_pipeline/extraction_batch_manifest/1.0",
+            "schema_version": "trace/extraction_batch_manifest/1.0",
             "article_id": article_id,
             "budget_chars": budget,
             "batches": plan,
@@ -1478,7 +1478,7 @@ def run_article(request: dict, task, article_id: str, work: Path, runtime=None) 
                   'prompt_chars', 'schema_chars', 'request_chars',
                   'oversized_source_ids'}} for batch in state['batches']]
         _save_state(state_path, state)
-        write(work / 'batch_manifest.json', {'schema_version':'meta_pipeline/extraction_batch_manifest/1.0',
+        write(work / 'batch_manifest.json', {'schema_version':'trace/extraction_batch_manifest/1.0',
               'article_id':article_id, 'budget_chars':budget, 'batches':plan,
               'policy':'completed batches retained; only unfinished batches split at source boundaries'})
 

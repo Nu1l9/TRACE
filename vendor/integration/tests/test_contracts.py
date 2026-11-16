@@ -2,7 +2,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import json
-from metapipeline.contracts import *
+from trace_runtime.contracts import *
 ROOT=Path(__file__).resolve().parents[1];EX=ROOT/'examples'
 
 class ContractTests(unittest.TestCase):

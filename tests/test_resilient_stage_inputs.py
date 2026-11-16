@@ -12,7 +12,7 @@ from extensions.stage_inputs import bind_stage_inputs, validate_screening_reuse
 from extensions.runner import (archive_terminal_analysis_for_retry, frozen_analysis_request_for_retry,
                                rebind_runner_input_for_analysis_retry)
 from extensions.parallel_worker import _workers
-from metapipeline.contracts import screening_protocol
+from trace_runtime.contracts import screening_protocol
 
 sys.path.insert(0, str(BASELINE / 'vendor' / 'miners'))
 from miners.case_screening_rob import FullTextProtocolScreener
@@ -47,7 +47,7 @@ class StageInputsTests(unittest.TestCase):
             signature = bind_stage_inputs(request, output, 'extraction')
             request['options']['max_workers'] = 2
             self.assertEqual(signature, bind_stage_inputs(request, output, 'extraction'))
-            with patch.dict('os.environ', {'META_PIPELINE_ACTIVE_WORKERS': '1'}):
+            with patch.dict('os.environ', {'TRACE_ACTIVE_WORKERS': '1'}):
                 self.assertEqual(_workers(request, 10), 1)
             Path(request['documents'][0]['paths']['markdown']).write_text('Changed source counts.')
             with self.assertRaisesRegex(ValueError, 'inputs changed'):

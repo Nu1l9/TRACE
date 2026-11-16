@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from extensions import update
-from metapipeline import pipeline
+from trace_runtime import pipeline
 
 
 class CrossVersionUpdateTests(unittest.TestCase):
@@ -18,8 +18,8 @@ class CrossVersionUpdateTests(unittest.TestCase):
         self.base.mkdir()
         self.checkout = self.root/'current'
         self.integration = self.checkout/'vendor/integration'
-        (self.integration/'metapipeline').mkdir(parents=True)
-        self.code = self.integration/'metapipeline/pipeline.py'
+        (self.integration/'trace_runtime').mkdir(parents=True)
+        self.code = self.integration/'trace_runtime/pipeline.py'
         self.code.write_text('# original implementation\n')
         update.write(self.integration/'source_archives.json', {'source': 'original'})
         self.components = self.checkout/'component_provenance.json'
@@ -36,7 +36,7 @@ class CrossVersionUpdateTests(unittest.TestCase):
         self.settings = {'bias': {'mode': 'draft'}}
         self.versions = {stage: 'original-'+stage for stage in update.STAGES}
         for target, value in [('extensions.update.ROOT', self.checkout),
-                              ('metapipeline.pipeline.ROOT', self.integration),
+                              ('trace_runtime.pipeline.ROOT', self.integration),
                               ('extensions.update.implementation_versions', lambda: self.versions.copy())]:
             patcher = patch(target, value)
             patcher.start()

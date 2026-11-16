@@ -8,7 +8,7 @@ A TRACE request JSON defines the clinical question, prespecified research protoc
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `schema_version` | Yes | Request contract identifier (e.g. `"meta_pipeline/1.0"`) |
+| `schema_version` | Yes | Request contract identifier (e.g. `"trace/1.0"`) |
 | `case_id` | Yes | Stable case identifier used across outputs, dashboards and incremental updates |
 | `topic` | Yes | Clinical research question |
 | `protocol` | Yes | PICO eligibility criteria, allowed study designs, `statistical_method_policy` and structured `targets` with allowed data families |

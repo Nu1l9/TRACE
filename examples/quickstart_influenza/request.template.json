@@ -1,5 +1,5 @@
 {
-  "schema_version": "meta_pipeline/1.0",
+  "schema_version": "trace/1.0",
   "case_id": "ma_0025_oa_quickstart",
   "topic": "Among patients hospitalized with severe influenza, do convalescent plasma or hyperimmune immunoglobulin products reduce all-cause mortality versus a control product or placebo?",
   "protocol": {

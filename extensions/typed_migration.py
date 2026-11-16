@@ -16,10 +16,10 @@ import re
 from typing import Any
 
 from .common import ROOT, digest, read, require, write
-from metapipeline.contracts import normalize_request
+from trace_runtime.contracts import normalize_request
 
 
-SCHEMA = "meta_pipeline_legacy/typed_migration/1.0"
+SCHEMA = "trace_legacy/typed_migration/1.0"
 TYPED_TEMPLATE_FAMILIES = {
     "adjusted_ratio_effect",
     "reported_ratio_effect",

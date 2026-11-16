@@ -147,7 +147,7 @@ def prepare(output, *, cache=None, offline=False, include_author_manuscript=Fals
         elif offline:
             raise ValueError(f'Missing cached full text: {cached}')
         else:
-            req = Request(source['xml_url'], headers={'User-Agent': 'MetaPipeline-Quickstart/1.0'})
+            req = Request(source['xml_url'], headers={'User-Agent': 'TRACE-Quickstart/1.0'})
             with urlopen(req, timeout=45) as response:
                 data = response.read(MAX_BYTES + 1)
             if len(data) > MAX_BYTES:
@@ -175,7 +175,7 @@ def prepare(output, *, cache=None, offline=False, include_author_manuscript=Fals
     if include_author_manuscript:
         added = {source['pmcid'] for source in selected if not source['default']}
         files['update.delta.json'] = json_bytes({
-            'schema_version': 'meta_pipeline_update/1.0',
+            'schema_version': 'trace_update/1.0',
             'documents': [doc for doc in request['documents'] if doc['article_id'] in added],
         })
     provenance['generated_files'] = {name: digest(data) for name, data in files.items()}

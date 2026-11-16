@@ -19,15 +19,15 @@ sys.path.insert(0, str(ROOT))
 from extensions.common import activate
 activate()
 from extensions.transport import retry_text_call, primary_attempts
-from metapipeline.contracts import ContractError, read, write, require, screening_protocol
+from trace_runtime.contracts import ContractError, read, write, require, screening_protocol
 
 EXTRACT = ROOT / 'vendor/integration/vendor/evidence_extraction/system'
 MINERS = ROOT / 'vendor/integration/vendor/miners'
 
 
 def _workers(request, count):
-    requested = _env_int('META_PIPELINE_ACTIVE_WORKERS', request['options']['max_workers'])
-    require(requested <= 8, 'META_PIPELINE_ACTIVE_WORKERS must be between 1 and 8')
+    requested = _env_int('TRACE_ACTIVE_WORKERS', request['options']['max_workers'])
+    require(requested <= 8, 'TRACE_ACTIVE_WORKERS must be between 1 and 8')
     return min(requested, max(1, count))
 
 
@@ -47,7 +47,7 @@ def _env_float(name, default, *, minimum=0.0):
 
 
 def _screening_workers(request, count):
-    configured = _env_int('META_PIPELINE_SCREEN_WORKERS', 2)
+    configured = _env_int('TRACE_SCREEN_WORKERS', 2)
     return min(_workers(request, count), configured)
 
 
@@ -66,7 +66,7 @@ def _retryable_extraction_error(exc):
 
 def _extraction_workers(request, count):
     """Default to two text calls: faster than a four-way provider 429 loop."""
-    configured = _env_int('META_PIPELINE_EXTRACT_WORKERS', min(2, request['options']['max_workers']))
+    configured = _env_int('TRACE_EXTRACT_WORKERS', min(2, request['options']['max_workers']))
     return min(_workers(request, count), configured)
 
 
@@ -78,7 +78,7 @@ def _review_workers(request, count):
     for a modest document set, so it has its own conservative default.
     """
     configured = _env_int(
-        'META_PIPELINE_REVIEW_WORKERS',
+        'TRACE_REVIEW_WORKERS',
         min(2, request['options']['max_workers']),
     )
     return min(_workers(request, count), configured)
@@ -86,7 +86,7 @@ def _review_workers(request, count):
 
 def _retry_deferred_524() -> bool:
     """Whether this resume deliberately replays previously deferred 524s."""
-    return os.environ.get('META_PIPELINE_RETRY_DEFERRED_524', '').strip().casefold() in {
+    return os.environ.get('TRACE_RETRY_DEFERRED_524', '').strip().casefold() in {
         '1', 'true', 'yes', 'on',
     }
 
@@ -122,8 +122,8 @@ def screen(request, output):
     if (output / 'risk_of_bias_recommendations.json').is_file():
         prior_routes = {row['article_id']: row for row in read(output / 'risk_of_bias_recommendations.json').get('recommendations', [])}
     protocol = screening_protocol(request)
-    request_attempts = _env_int('META_PIPELINE_SCREEN_REQUEST_ATTEMPTS', primary_attempts())
-    retry_delay = _env_float('META_PIPELINE_SCREEN_RETRY_DELAY_SECONDS', 5.0)
+    request_attempts = _env_int('TRACE_SCREEN_REQUEST_ATTEMPTS', primary_attempts())
+    retry_delay = _env_float('TRACE_SCREEN_RETRY_DELAY_SECONDS', 5.0)
 
     def one(document):
         aid, paths = document['article_id'], document['paths']
@@ -290,8 +290,8 @@ def extract(request, config, output):
     capacity = workers
     print(
         f'[extraction-resilient] parallel workers={workers}; '
-        f'message+schema request budget={os.environ.get("META_PIPELINE_EXTRACT_BATCH_CHARS", "20000")} chars; '
-        f'client timeout={os.environ.get("META_PIPELINE_EXTRACT_TIMEOUT_SECONDS", "300")}s',
+        f'message+schema request budget={os.environ.get("TRACE_EXTRACT_BATCH_CHARS", "20000")} chars; '
+        f'client timeout={os.environ.get("TRACE_EXTRACT_TIMEOUT_SECONDS", "300")}s',
         flush=True,
     )
     prior_deferred_ids = {row['article_id'] for row in prior_outage_records}
@@ -355,7 +355,7 @@ def extract(request, config, output):
             schedule()
     if failures or unscheduled:
         write(output / 'extraction_failures.json', {
-            'schema_version': 'meta_pipeline/extraction_failures/1.0',
+            'schema_version': 'trace/extraction_failures/1.0',
             'case_id': request['case_id'],
             'completed_article_ids': [aid for aid in ids if aid in completed],
             'failures': failures,
@@ -373,7 +373,7 @@ def extract(request, config, output):
     if prior_failures_path.is_file():
         history_path = output / 'extraction_failure_history.json'
         history = read(history_path) if history_path.is_file() else {
-            'schema_version': 'meta_pipeline/extraction_failure_history/1.0',
+            'schema_version': 'trace/extraction_failure_history/1.0',
             'case_id': request['case_id'], 'events': [],
         }
         history['events'].append({
@@ -405,7 +405,7 @@ def review(request, config, submission, output):
 
     payload = read(submission)
     workers = _review_workers(request, len(payload.get('predictions', [])))
-    retry_delay = _env_float('META_PIPELINE_REVIEW_RETRY_DELAY_SECONDS', 60.0)
+    retry_delay = _env_float('TRACE_REVIEW_RETRY_DELAY_SECONDS', 60.0)
     print(
         f"[review] parallel workers={workers}; retry delay={retry_delay:g}s",
         flush=True,
@@ -414,11 +414,11 @@ def review(request, config, submission, output):
     result = run_review(
         task, payload, output,
         model=request['options']['model'],
-        batch_size=_env_int('META_PIPELINE_REVIEW_BATCH_SIZE', 5, minimum=2),
+        batch_size=_env_int('TRACE_REVIEW_BATCH_SIZE', 5, minimum=2),
         workers=workers,
         max_retries=request['options']['max_retries'],
         retry_delay=retry_delay,
-        timeout=_env_float('META_PIPELINE_REVIEW_TIMEOUT_SECONDS', 300.0, minimum=1.0),
+        timeout=_env_float('TRACE_REVIEW_TIMEOUT_SECONDS', 300.0, minimum=1.0),
         legacy_validator=lambda: validate_legacy_review(request, submission, output),
     )
     write(output / 'candidate_evidence_review_structured.json', result)

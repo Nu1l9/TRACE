@@ -10,8 +10,8 @@ from .common import require, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PROVIDER_CONFIG = ROOT / "config" / "provider.json"
-PROVIDER_CONFIG_SCHEMA = "meta_pipeline/provider_selection/1.0"
-LEGACY_PROVIDER_CONFIG_SCHEMA = "meta_pipeline_integrated/provider_selection/1.0"
+PROVIDER_CONFIG_SCHEMA = "trace/provider_selection/1.0"
+LEGACY_PROVIDER_CONFIG_SCHEMA = "trace_integrated/provider_selection/1.0"
 
 TEXT_NAMES = {"official_openai", "openai_compatible"}
 EMBEDDING_NAMES = {"official_openai", "openai_compatible"}
@@ -58,7 +58,7 @@ def selection_values(config_file=DEFAULT_PROVIDER_CONFIG):
     require(path.is_file(), "missing provider selection config: " + str(path))
     import json
     payload = json.loads(path.read_text(encoding="utf-8"))
-    require(payload.get("schema_version") in {PROVIDER_CONFIG_SCHEMA, LEGACY_PROVIDER_CONFIG_SCHEMA, "meta_pipeline_legacy/provider_selection/1.0", "meta_pipeline_compatible/provider_selection/1.0"},
+    require(payload.get("schema_version") in {PROVIDER_CONFIG_SCHEMA, LEGACY_PROVIDER_CONFIG_SCHEMA, "trace_legacy/provider_selection/1.0", "trace_compatible/provider_selection/1.0"},
             "invalid provider selection config schema_version")
     text = payload.get("text_provider")
     embedding = payload.get("embedding_provider")
@@ -206,7 +206,7 @@ def runtime(request, env_file=None):
         paths = document.get("paths", {})
         if paths.get("markdown") or paths.get("content_list"):
             paths.pop("pdf", None)
-    from metapipeline.pipeline import runtime_environment
+    from trace_runtime.pipeline import runtime_environment
     built = runtime_environment(derived)
     built.update(env)
     built["PYTHONDONTWRITEBYTECODE"] = "1"

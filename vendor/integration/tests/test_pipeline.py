@@ -4,8 +4,8 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-from metapipeline.contracts import *
-from metapipeline.pipeline import Runner,runtime_environment,replay
+from trace_runtime.contracts import *
+from trace_runtime.pipeline import Runner,runtime_environment,replay
 ROOT=Path(__file__).resolve().parents[1];EX=ROOT/'examples'
 
 class PipelineTests(unittest.TestCase):

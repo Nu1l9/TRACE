@@ -146,7 +146,7 @@ def _compile_spec(raw: dict, target: dict, pico: dict) -> dict:
 def normalize_request(request: dict[str, Any]) -> dict[str, Any]:
     """Return a copy with explicit analysis semantics and a Typed extractor route.
 
-    Call before the existing metapipeline path/credential boundary validation.
+    Call before the existing trace_runtime path/credential boundary validation.
     This function intentionally does not broaden or narrow a declared target.
     """
     result = deepcopy(request)

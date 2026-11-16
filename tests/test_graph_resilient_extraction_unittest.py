@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 
 from extensions import resilient_extraction as resilient
 from extensions import parallel_worker
-from metapipeline.contracts import ContractError, read, write
+from trace_runtime.contracts import ContractError, read, write
 
 
 class FakeExtraction:
@@ -131,7 +131,7 @@ class GraphResilientExtractionTests(unittest.TestCase):
     def test_extraction_timeout_defaults_to_300_seconds(self):
         with patch.dict(os.environ, {}, clear=True):
             self.assertEqual(300.0, resilient._extract_timeout_seconds())
-        with patch.dict(os.environ, {"META_PIPELINE_EXTRACT_TIMEOUT_SECONDS": "42.5"}, clear=True):
+        with patch.dict(os.environ, {"TRACE_EXTRACT_TIMEOUT_SECONDS": "42.5"}, clear=True):
             self.assertEqual(42.5, resilient._extract_timeout_seconds())
 
     def test_typed_extraction_payload_omits_redundant_label_and_page(self):
@@ -189,11 +189,11 @@ class GraphResilientExtractionTests(unittest.TestCase):
         runtime = (lambda _: FakeTask(), FakeController, tools, FakeModels)
         with tempfile.TemporaryDirectory() as temp:
             work = Path(temp)
-            with patch.dict(os.environ, {'META_PIPELINE_EXTRACT_BATCH_CHARS':'40000'}), patch.object(
+            with patch.dict(os.environ, {'TRACE_EXTRACT_BATCH_CHARS':'40000'}), patch.object(
                     tools, 'extract_from_locations', side_effect=FakeProviderError(524)):
                 with self.assertRaises(FakeProviderError):
                     resilient.run_article(self.request(), FakeTask(), 'article', work, runtime=runtime)
-            with patch.dict(os.environ, {'META_PIPELINE_EXTRACT_BATCH_CHARS':'20000'}):
+            with patch.dict(os.environ, {'TRACE_EXTRACT_BATCH_CHARS':'20000'}):
                 result = resilient.run_article(self.request(), FakeTask(), 'article', work, runtime=runtime)
                 self.assertEqual(2, len(result['extraction_submission']['predictions']))
                 self.assertEqual(1, tools.locator_calls)
@@ -216,7 +216,7 @@ class GraphResilientExtractionTests(unittest.TestCase):
         tools = FakeTools()
         runtime = (lambda _: FakeTask(), FakeController, tools, FakeModels)
         with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, {
-            "META_PIPELINE_EXTRACT_BATCH_CHARS": "20000",
+            "TRACE_EXTRACT_BATCH_CHARS": "20000",
         }, clear=False):
             result = resilient.run_article(self.request(), FakeTask(), "article", Path(temp), runtime=runtime)
             self.assertEqual(2, len(result["extraction_submission"]["predictions"]))
@@ -321,7 +321,7 @@ class GraphResilientExtractionTests(unittest.TestCase):
             self.assertEqual(["deferred"], read(out / "extraction_failures.json")["deferred_article_ids"])
 
             calls = []
-            with patch.dict(os.environ, {"META_PIPELINE_RETRY_DEFERRED_524": "1"}, clear=False), patch.object(resilient, "_load_runtime", return_value=(lambda _: task, object(), object(), object())), patch.object(resilient, "run_article", side_effect=successful_article(calls)):
+            with patch.dict(os.environ, {"TRACE_RETRY_DEFERRED_524": "1"}, clear=False), patch.object(resilient, "_load_runtime", return_value=(lambda _: task, object(), object(), object())), patch.object(resilient, "run_article", side_effect=successful_article(calls)):
                 parallel_worker.extract(self.request(workers=1), Path(temp) / "config.json", out)
             self.assertEqual(["deferred"], calls)
             self.assertTrue((out / "extraction_complete.json").is_file())

@@ -27,7 +27,7 @@ def require_local_runtime_sources():
         examples = '\n'.join(f'  {path.relative_to(root)}' for path in unavailable[:5])
         raise SystemExit(
             f'ERROR: {len(unavailable)} pipeline source/guidance files are macOS cloud placeholders '
-            '(dataless). Download the meta_pipeline folder to this Mac before running.\n'
+            '(dataless). Download the trace folder to this Mac before running.\n'
             f'Examples:\n{examples}\n'
             'No pipeline stage or model call has started.'
         )

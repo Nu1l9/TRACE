@@ -10,7 +10,7 @@ sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'vendor/miners'))
 EXTRACT=ROOT/'vendor/evidence_extraction/system'
 sys.path.insert(0,str(EXTRACT));sys.path.insert(0,str(EXTRACT/'runtime/typed'))
 sys.path.insert(0,str(ROOT/'vendor/evidence_analysis'))
-from metapipeline.contracts import *
+from trace_runtime.contracts import *
 from miners.case_screening_rob import FullTextProtocolScreener
 from constrained_meta_agent.loader import load_case_config
 from locator_extractor_agent.controller import run_article

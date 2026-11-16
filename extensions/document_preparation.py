@@ -23,10 +23,10 @@ from .common import ContractError, require
 
 
 def _cache_root(environment: dict[str, str]) -> Path:
-    configured = environment.get("META_PIPELINE_DOCUMENT_CACHE")
+    configured = environment.get("TRACE_DOCUMENT_CACHE")
     if configured:
         return Path(configured).expanduser().resolve()
-    return (Path.home() / "Library/Application Support/meta_pipeline_sources/prepared_mineru").resolve()
+    return (Path.home() / "Library/Application Support/trace_sources/prepared_mineru").resolve()
 
 
 def _digest(path: Path) -> str:
@@ -34,8 +34,8 @@ def _digest(path: Path) -> str:
 
 
 def _shared_index(environment):
-    root = Path(environment.get('META_PIPELINE_SHARED_MINERU_ROOT') or
-                Path.home() / 'Library/Application Support/meta_pipeline_shared/mineru_22_cases').expanduser().resolve()
+    root = Path(environment.get('TRACE_SHARED_MINERU_ROOT') or
+                Path.home() / 'Library/Application Support/trace_shared/mineru_22_cases').expanduser().resolve()
     manifest = root / 'dataset_manifest.json'
     if not manifest.is_file():
         return root, {}, {}
@@ -140,7 +140,7 @@ def prepare_request(request: dict, environment: dict[str, str] | None = None, *,
     cache_root = _cache_root(environment)
     report = {"schema_version": "document_preparation/1.0", "policy": "prefer_registered_markdown_else_mineru_pdf", "documents": []}
     documents = result.get("documents", [])
-    workers = min(max(1, int(environment.get('META_PIPELINE_WORKERS', '4'))), max(1, len(documents)))
+    workers = min(max(1, int(environment.get('TRACE_WORKERS', '4'))), max(1, len(documents)))
     @lru_cache(maxsize=1)
     def shared_index():
         return _shared_index(environment)

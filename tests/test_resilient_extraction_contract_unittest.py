@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from extensions import resilient_extraction as extraction
-from metapipeline.contracts import ContractError, read, write
+from trace_runtime.contracts import ContractError, read, write
 
 
 class BinaryRaw(BaseModel):
@@ -170,7 +170,7 @@ class ResilientExtractionContractTests(unittest.TestCase):
 
     def test_real_count_schemas_reject_negative_and_preserve_recurrence(self):
         import importlib
-        from metapipeline.worker import load_extractor
+        from trace_runtime.worker import load_extractor
         _, run = load_extractor({'options': {'extraction_runtime': 'typed'}})
         models = importlib.import_module(run.__module__.rsplit('.', 1)[0] + '.extraction_models')
         with self.assertRaises(ValidationError):
@@ -195,7 +195,7 @@ class ResilientExtractionContractTests(unittest.TestCase):
 
     def test_empty_diagnostic_set_is_recorded_without_numeric_repair_calls(self):
         import importlib
-        from metapipeline.worker import load_extractor
+        from trace_runtime.worker import load_extractor
         _, run = load_extractor({'options': {'extraction_runtime': 'typed'}})
         tools = importlib.import_module(run.__module__.rsplit('.', 1)[0] + '.tools')
         model_class = extraction._single_family_output_model(tools, 'diagnostic_four_cell_counts', ['accuracy'])
@@ -216,7 +216,7 @@ class ResilientExtractionContractTests(unittest.TestCase):
 
     def test_zero_sd_remains_raw_evidence_and_variance_controls_md_poolability(self):
         import importlib
-        from metapipeline.worker import load_extractor
+        from trace_runtime.worker import load_extractor
         _, run = load_extractor({'options': {'extraction_runtime': 'typed'}})
         models = importlib.import_module(run.__module__.rsplit('.', 1)[0] + '.extraction_models')
         from analysis_core.models import EvidenceRecord, ResolvedAnalysisProfile

@@ -1,5 +1,5 @@
 {
-  "schema_version": "meta_pipeline/provider_selection/1.0",
+  "schema_version": "trace/provider_selection/1.0",
   "text_provider": {
     "name": "official_openai",
     "base_url": "https://api.openai.com/v1",

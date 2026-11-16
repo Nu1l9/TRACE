@@ -46,7 +46,7 @@ def primary_attempts(env: dict[str, str] | None = None, *, prefix: str | None = 
     """Initial primary call plus two retry attempts by default."""
     values = os.environ if env is None else env
     names = ([f"{prefix}_PRIMARY_ATTEMPTS"] if prefix else []) + [
-        "META_PIPELINE_TEXT_PRIMARY_ATTEMPTS",
+        "TRACE_TEXT_PRIMARY_ATTEMPTS",
     ]
     for name in names:
         if values.get(name) is not None:

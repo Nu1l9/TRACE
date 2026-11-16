@@ -12,7 +12,7 @@ from .contracts import (read,write,digest,normalize_request,accepted_articles,pr
 
 ROOT=Path(__file__).resolve().parents[1]
 ANALYSIS=ROOT/'vendor/evidence_analysis'
-WORKER=ROOT/'metapipeline/worker.py'
+WORKER=ROOT/'trace_runtime/worker.py'
 
 def now():return datetime.now(timezone.utc).isoformat()
 
@@ -53,7 +53,7 @@ def fingerprint(r):
         for k,p in d['paths'].items():
             if k in ('markdown','content_list','pdf'):
                 files[f"{d['article_id']}:{k}"]=hashlib.sha256(Path(p).read_bytes()).hexdigest()
-    implementation={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/'metapipeline').glob('*.py'))}
+    implementation={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/'trace_runtime').glob('*.py'))}
     return digest({'request':r,'document_sha256':files,'implementation':implementation,'sources':read(ROOT/'source_archives.json')})
 
 def preflight_runtime(r,env):
@@ -67,7 +67,7 @@ def preflight_runtime(r,env):
     require(result.returncode==0,'Install the R package metafor before starting the full pipeline')
 
 def validate_components(r,env):
-    with tempfile.TemporaryDirectory(prefix='meta_pipeline_check_') as temp:
+    with tempfile.TemporaryDirectory(prefix='trace_check_') as temp:
         temp=Path(temp);write(temp/'request.json',r)
         config=prepare_extraction(r,[d['article_id'] for d in r['documents']],temp/'config')
         for stage in ('extract-check','plan-check'):

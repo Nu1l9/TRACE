@@ -21,18 +21,18 @@ def project_root(package_parent=PACKAGE_PARENT, prefix=None):
 
 ROOT = project_root()
 def default_data_dir():
-    override = os.environ.get('META_PIPELINE_QA_DATA_DIR')
+    override = os.environ.get('TRACE_QA_DATA_DIR')
     if override:
         return Path(override).expanduser()
     if sys.platform == 'darwin':
-        return Path.home() / 'Library/Application Support/meta_pipeline/result_guide'
+        return Path.home() / 'Library/Application Support/trace/result_guide'
     if os.name == 'nt':
-        return Path(os.environ.get('LOCALAPPDATA', Path.home() / 'AppData/Local')) / 'meta_pipeline/result_guide'
-    return Path(os.environ.get('XDG_DATA_HOME', Path.home() / '.local/share')) / 'meta_pipeline/result_guide'
+        return Path(os.environ.get('LOCALAPPDATA', Path.home() / 'AppData/Local')) / 'trace/result_guide'
+    return Path(os.environ.get('XDG_DATA_HOME', Path.home() / '.local/share')) / 'trace/result_guide'
 
 DATA = default_data_dir()
 PORT = 8770
-MARKER = 'meta-pipeline-result-guide-v1'
+MARKER = 'trace-result-guide-v1'
 
 def read(path):
     return json.loads(load_file(path))

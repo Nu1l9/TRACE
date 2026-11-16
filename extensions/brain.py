@@ -12,7 +12,7 @@ import re
 from typing import Callable
 
 from .common import ContractError, digest, require
-from metapipeline.contracts import SUPPORTED, VERSION, identity, no_labels, normalize_request, text
+from trace_runtime.contracts import SUPPORTED, VERSION, identity, no_labels, normalize_request, text
 
 JsonCallback = Callable[[dict], dict]
 PICO = ('population', 'intervention_or_exposure', 'comparison', 'outcome')
@@ -267,7 +267,7 @@ def fill_topic(topic: str, known_fields: dict | None = None, callback: JsonCallb
     return {'schema_version': 'brain_proposal/2.0', 'status': 'ready' if ready else 'draft',
             'pipeline_request': request, 'missing_fields': missing, 'uncertainties': uncertainties,
             'field_provenance': provenance, 'suggested_fields': pending,
-            'validation': {'valid': not errors, 'validator': 'frozen_meta_pipeline/1.0',
+            'validation': {'valid': not errors, 'validator': 'frozen_trace/1.0',
                            'paths_checked': check_paths, 'errors': errors},
             'proposal_fingerprint': digest(request)}
 

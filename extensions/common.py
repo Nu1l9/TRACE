@@ -15,4 +15,4 @@ def activate():
 
 
 activate()
-from metapipeline.contracts import ContractError, digest, read, require, write
+from trace_runtime.contracts import ContractError, digest, read, require, write

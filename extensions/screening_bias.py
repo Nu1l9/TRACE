@@ -521,9 +521,9 @@ def assess_screened(request, screening, recommendations, output, callback, *, al
         return response
     print(f'[screening-rob] {len(included)} articles, {len(units["candidates"])} article/target assessments; '
           f'routable={len(routed_units["candidates"])} uncovered={len(uncovered_routes)}',flush=True)
-    workers=max(1,min(request['options']['max_workers'],int(os.environ.get('META_PIPELINE_ROB_WORKERS', request['options']['max_workers']))))
+    workers=max(1,min(request['options']['max_workers'],int(os.environ.get('TRACE_ROB_WORKERS', request['options']['max_workers']))))
     print(f'[screening-rob] parallel workers={workers}',flush=True)
-    source_budget=int(os.environ.get('META_PIPELINE_ROB_SOURCE_CHARS','26000'))
+    source_budget=int(os.environ.get('TRACE_ROB_SOURCE_CHARS','26000'))
     print(f'[screening-rob] source evidence budget={source_budget} chars per assessment',flush=True)
     routed_result=assess_request(request,routes,routed_units,callback=guided,workers=workers,
                                  checkpoint_path=checkpoint,source_region_max_chars=source_budget,allow_partial=allow_partial) \

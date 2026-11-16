@@ -7,7 +7,7 @@ import re
 from .evidence_context import build_review_context
 from pathlib import Path
 
-VERSION = 'meta_pipeline/1.0'
+VERSION = 'trace/1.0'
 EARLY_BASELINE_CASES = {'ma_0001','ma_0011','ma_0012','ma_0044','ma_0046','ma_0076','ma_0086'}
 ALIASES = {k: 'binary_arm_counts' for k in ('binary_arm_outcome','binary_arm_event_counts','two_group_event_counts','binary_exposure_outcome_counts')}
 ALIASES['adjusted_time_to_event_effect'] = 'adjusted_ratio_effect'

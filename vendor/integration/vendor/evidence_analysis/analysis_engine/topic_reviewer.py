@@ -6,7 +6,7 @@ from typing import Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from metapipeline.evidence_context import needs_source_resolution, numeric_fields, resolution_problem
+from trace_runtime.evidence_context import needs_source_resolution, numeric_fields, resolution_problem
 
 from .eligibility import eligibility_reasons, selection_score
 from analysis_core.models import AnalysisDefinition, CandidateSet

@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / 'vendor/integration'),
                str(ROOT / 'vendor/integration/vendor/evidence_analysis')]
-from metapipeline.contracts import evidence_handoff, write_analysis_input
+from trace_runtime.contracts import evidence_handoff, write_analysis_input
 from contract_adapter import load_analysis_contract
 from analysis_engine.evidence_graph import load_evidence_records
 
@@ -17,7 +17,7 @@ class ReviewHandoffTests(unittest.TestCase):
     def test_batch_caveats_reach_review_and_analysis_without_becoming_verdicts(self):
         from types import SimpleNamespace
         from extensions.resilient_extraction import _attach_extraction_diagnostics
-        from metapipeline.worker import load_extractor
+        from trace_runtime.worker import load_extractor
         load_extractor({'options': {'extraction_runtime': 'typed'}})
         from evidence_reviewer.reviewer import _compact_candidate
         args = self.fixture()

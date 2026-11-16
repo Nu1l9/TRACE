@@ -80,7 +80,7 @@ def inspect_legacy_run(request: dict, source: Path) -> dict:
         state = read(run_dir / 'resilient_article_state.json')
         submission_path = run_dir / 'extraction_submission.json'
         submission = read(submission_path)
-        require(state.get('schema_version') == 'meta_pipeline_legacy/article_extraction_state/1.0'
+        require(state.get('schema_version') == 'trace_legacy/article_extraction_state/1.0'
                 and state.get('article_id') == aid and state.get('status') == 'completed',
                 f'{aid}: legacy article is not complete')
         predictions = submission.get('predictions')

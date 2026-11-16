@@ -6,7 +6,7 @@ sys.dont_write_bytecode=True
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from extensions import expert
 from extensions.common import BASELINE,read,write,require
-from metapipeline.contracts import normalize_request
+from trace_runtime.contracts import normalize_request
 
 
 def main():

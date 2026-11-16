@@ -12,7 +12,7 @@ import tempfile
 
 from .common import ROOT, read, write, require, digest, ContractError
 from .brain import fill_topic, _safe_json, _validate_known, PROTOCOL_FIELDS, PROFILE_FIELDS, SOURCE_KEYS
-from metapipeline.contracts import normalize_request, no_labels
+from trace_runtime.contracts import normalize_request, no_labels
 
 STAGES = ('screening', 'extraction', 'analysis')
 
@@ -276,7 +276,7 @@ def approve(directory,version,stage='all',note=''):
         require(version==revision['version'],'Approval must name the current plan version')
         require(revision['proposal']['status']=='ready','Plan still has missing fields or unresolved questions')
         request=normalize_request(revision['proposal']['pipeline_request'])
-        from metapipeline.pipeline import validate_components,runtime_environment
+        from trace_runtime.pipeline import validate_components,runtime_environment
         env=runtime_environment(request);env['PYTHONDONTWRITEBYTECODE']='1';env['MPLCONFIGDIR']=str(ROOT/'.cache/matplotlib')
         validate_components(request,env)
         stages=STAGES if stage=='all' else (stage,)
@@ -338,7 +338,7 @@ class StageApprovalRequired(ContractError):
 def execute(directory,settings,env_file=None):
     from .runner import ExtensionRunner
     from .settings import settings_fingerprint
-    from metapipeline.pipeline import runtime_environment,preflight_runtime
+    from trace_runtime.pipeline import runtime_environment,preflight_runtime
     with session_lock(directory) as directory:
         state=load(directory);revision=current(state)
         require(revision['proposal']['status']=='ready','Complete the plan before execution')

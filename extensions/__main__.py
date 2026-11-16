@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from .common import ROOT, BASELINE, read, write, require, ContractError
 from .settings import load_settings
-from metapipeline.contracts import normalize_request as normalize_pipeline_request
+from trace_runtime.contracts import normalize_request as normalize_pipeline_request
 from .input_contract import normalize_request as compile_input_contract
 
 
@@ -59,7 +59,7 @@ def _preview(args,patch=None,output=None):
 
 
 def main(argv=None):
-    parser=argparse.ArgumentParser(description='Meta Pipeline evidence synthesis')
+    parser=argparse.ArgumentParser(description='TRACE evidence synthesis')
     sub=parser.add_subparsers(dest='command',required=True)
     from literature_retrieval.pipeline import register_commands
     register_commands(sub)
@@ -134,13 +134,13 @@ def main(argv=None):
             require(frozen_request.is_file(), '--retry-analysis output has no frozen request.normalized.json')
             r=read(frozen_request)
             result=run(r,a.output,load_settings(a.extensions),a.env_file,True,
-                       {'META_PIPELINE_WORKERS':str(a.workers)},workers=a.workers,
+                       {'TRACE_WORKERS':str(a.workers)},workers=a.workers,
                        retry_analysis=True,rebuild_handoff=a.rebuild_handoff)
         elif a.command=='migrate-typed':
             from .typed_migration import migrate_all_benchmark, write_migration
             result=migrate_all_benchmark(a.output) if a.all_benchmark else write_migration(a.request,a.output)
         elif a.command in ('check','run'):
-            from metapipeline.pipeline import runtime_environment,validate_components,preflight_runtime
+            from trace_runtime.pipeline import runtime_environment,validate_components,preflight_runtime
             r=_request(a.request);settings=load_settings(a.extensions)
             from .document_preparation import prepare_request
             preparation_env = dict(os.environ)
@@ -171,7 +171,7 @@ def main(argv=None):
                 require(1 <= a.workers <= 8, '--workers must be between 1 and 8')
                 require(not a.retry_deferred or a.resume, '--retry-deferred requires --resume')
                 require(not a.retry_analysis or a.resume, '--retry-analysis requires --resume')
-                preparation_env['META_PIPELINE_WORKERS']=str(a.workers)
+                preparation_env['TRACE_WORKERS']=str(a.workers)
                 result=run(r,a.output,settings,a.env_file,a.resume,preparation_env,
                            workers=a.workers,retry_deferred=a.retry_deferred,
                            retry_analysis=a.retry_analysis,
@@ -181,7 +181,7 @@ def main(argv=None):
             from .analysis_worker import run_analysis
             r=_request(a.request)
             if a.offline:
-                from metapipeline.pipeline import runtime_environment
+                from trace_runtime.pipeline import runtime_environment
                 environment=runtime_environment(r,a.env_file)
                 environment['PYTHONDONTWRITEBYTECODE']='1';environment['MPLCONFIGDIR']=str(ROOT/'.cache/matplotlib')
             else:

@@ -9,7 +9,7 @@ from typing import Sequence
 
 def r_timeout_seconds() -> float:
     """Use a separate timeout for local statistics, independent of LLM calls."""
-    return float(os.getenv("META_PIPELINE_R_TIMEOUT_SECONDS", "300"))
+    return float(os.getenv("TRACE_R_TIMEOUT_SECONDS", "300"))
 
 
 def run_rscript(command: Sequence[str], *, purpose: str, attempts: int = 2) -> subprocess.CompletedProcess[str]:

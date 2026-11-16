@@ -10,7 +10,7 @@ from pathlib import Path
 from .common import ROOT, BASELINE, read, write, require, digest
 from .provider import fingerprint
 from .settings import settings_fingerprint
-from metapipeline.pipeline import Runner, runtime_environment, preflight_runtime
+from trace_runtime.pipeline import Runner, runtime_environment, preflight_runtime
 from .handoff import install as install_evidence_handoff
 
 install_evidence_handoff()
@@ -238,7 +238,7 @@ def rebind_runner_input_for_analysis_retry(request: dict, output: Path) -> None:
     Stage locks separately bind the request semantics and source bytes, so
     verify them first and then record the new Runner fingerprint in the manifest.
     """
-    from metapipeline.pipeline import fingerprint as runner_fingerprint
+    from trace_runtime.pipeline import fingerprint as runner_fingerprint
     from .stage_inputs import stage_signature
 
     output = Path(output).resolve()
@@ -637,7 +637,7 @@ class ExtensionRunner(ProgressRunner):
             # extraction.  Such studies remain part of the review record and
             # are reported as qualitative-only evidence; only successfully
             # reviewed numeric rows reach the calculator.
-            from metapipeline.contracts import (
+            from trace_runtime.contracts import (
                 accepted_articles, prepare_extraction,
                 write_analysis_input,
             )
@@ -758,7 +758,7 @@ class ExtensionRunner(ProgressRunner):
             # Match the frozen runner's resumable interruption contract.  The
             # external qualitative-evidence branch must never strand a live
             # run in ``running`` after the parent process is interrupted.
-            from metapipeline.pipeline import now
+            from trace_runtime.pipeline import now
             for stage in self.state['stages'].values():
                 if stage.get('status')=='running':
                     stage['status']='paused';stage['paused_at']=now()
@@ -797,7 +797,7 @@ def run(request,output,settings,env_file=None,resume=False,preparation_environme
     request['options']['route_rob']=True
     request['options']['max_workers']=workers
     preparation_environment=dict(preparation_environment or {})
-    preparation_environment['META_PIPELINE_WORKERS']=str(active_workers)
+    preparation_environment['TRACE_WORKERS']=str(active_workers)
     if retry_analysis:
         # Retain the request exactly as the finished screening/extraction/review
         # stages saw it. runtime() is used only to construct the child
@@ -810,14 +810,14 @@ def run(request,output,settings,env_file=None,resume=False,preparation_environme
     else:
         request, preparation = prepare_request(request, preparation_environment)
         request,environment,profile=runtime(request,env_file)
-    environment['META_PIPELINE_ACTIVE_WORKERS']=str(active_workers)
+    environment['TRACE_ACTIVE_WORKERS']=str(active_workers)
     environment['MPLCONFIGDIR']=str(ROOT/'.cache/matplotlib')
     if retry_deferred:
-        environment['META_PIPELINE_RETRY_DEFERRED_524']='1'
+        environment['TRACE_RETRY_DEFERRED_524']='1'
     # COMPATIBLE has shown provider-side timeouts when several full-text RoB calls are
     # in flight.  Keep all ordinary stages at the requested worker count while
     # retaining two concurrent RoB assessments for a reliable resumable stage.
-    environment['META_PIPELINE_ROB_WORKERS']=str(max(1,min(int(active_workers),2)))
+    environment['TRACE_ROB_WORKERS']=str(max(1,min(int(active_workers),2)))
     print('[preflight] Checking extraction, analysis components and R/metafor runtime', flush=True)
     preflight_runtime(request,environment)
     print('[preflight] Runtime checks completed', flush=True)

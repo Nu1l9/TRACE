@@ -12,7 +12,7 @@ Conducting a rigorous medical meta-analysis requires more than isolated text sum
 
 **TRACE** (**T**raceable, **R**eviewable, **A**gentic, **C**ross-stage **E**vidence synthesis) is a protocol-constrained multi-agent framework that connects primary clinical literature to source-traceable meta-analysis results. Rather than passing unlinked summary tables across black-box prompts, TRACE decouples clinical eligibility adjudication, primary data recovery and analytical synthesis across three stage-specific agents while maintaining a persistent cross-stage provenance graph from every pooled conclusion back to primary report passages. Built on this structured evidence state, TRACE supports selective expert risk triage, interactive audit dashboards, read-only provenance-linked question answering and incremental cross-window evidence updates.
 
-This repository (`meta-pipeline`) provides the end-to-end TRACE implementation and unified command-line workflow (`python trace_cli.py`). Task inputs, held-out reference annotations and stage-isolated / end-to-end evaluators are maintained in the companion benchmark repository [**EviSynth-Bench**](https://github.com/Nu1l9/EviSynth-Bench).
+This repository (`TRACE`) provides the end-to-end TRACE implementation and unified command-line workflow (`python trace_cli.py`). Task inputs, held-out reference annotations and stage-isolated / end-to-end evaluators are maintained in the companion benchmark repository [**EviSynth-Bench**](https://github.com/Nu1l9/EviSynth-Bench).
 
 ![Fig. 1 | TRACE architecture, cross-stage evidence traceability, EviSynth-Bench construction and four-tier evaluation design](docs/assets/fig1-system.png)
 

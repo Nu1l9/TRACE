@@ -53,7 +53,7 @@ class RetrievalTests(unittest.TestCase):
         changed=deepcopy(result); changed['documents'][0]['paths']['markdown']='another.md'
         with self.assertRaisesRegex(ValueError,'source path changed'):
             p.validate_seed(self.args.output, changed)
-        from metapipeline.pipeline import Runner
+        from trace_runtime.pipeline import Runner
         runner=Runner(result,self.args.output,{},initial_artifacts=('00_retrieval',))
         self.assertEqual(runner.state['status'],'running')
 

@@ -9,7 +9,7 @@ import time
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from metapipeline.contracts import read, write, screening_protocol
+from trace_runtime.contracts import read, write, screening_protocol
 EXTRACT=ROOT/'vendor/evidence_extraction/system'
 MINERS=ROOT/'vendor/miners'
 

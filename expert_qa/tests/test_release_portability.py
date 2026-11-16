@@ -38,10 +38,10 @@ class ReleasePortabilityTests(unittest.TestCase):
             command = (run / 'Open_results.command').read_text()
             self.assertIn('/custom/env/bin/python3', command)
             self.assertNotIn('.venv/bin/python', command)
-            self.assertNotRegex(command, r'meta_pipeline_' + r'v[0-9]+')
+            self.assertNotRegex(command, r'trace_' + r'v[0-9]+')
 
     def test_data_directory_can_be_explicitly_selected(self):
-        with patch.dict(os.environ, {'META_PIPELINE_QA_DATA_DIR': '~/qa-fixture'}, clear=True):
+        with patch.dict(os.environ, {'TRACE_QA_DATA_DIR': '~/qa-fixture'}, clear=True):
             self.assertEqual(default_data_dir(), Path('~/qa-fixture').expanduser())
 
     def test_checkout_configuration_never_comes_from_an_unrelated_environment(self):

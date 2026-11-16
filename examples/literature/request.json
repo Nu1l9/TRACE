@@ -1,5 +1,5 @@
 {
-  "schema_version": "meta_pipeline/1.0",
+  "schema_version": "trace/1.0",
   "case_id": "demo_case",
   "topic": "Synthetic interface test: intervention versus comparator and prespecified outcome",
   "protocol": {

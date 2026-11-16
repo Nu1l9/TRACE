@@ -35,7 +35,7 @@ python -m expert_qa register --run /path/to/saved-run --env-file /path/to/provid
 python -m expert_qa library --data-dir /path/to/qa-library
 ```
 
-On POSIX systems, `python trace_cli.py qa open --run /path/to/saved-run --env-file .env` registers the run and launches the library workspace automatically. Set `META_PIPELINE_QA_DATA_DIR` or pass `--data-dir` to customize the library path (defaults to the OS user-data directory under `meta_pipeline/result_guide`). Passing `--install-entries` to `register` adds workspace navigation links to saved dashboards while backing up the original HTML and leaving all JSON artefacts untouched.
+On POSIX systems, `python trace_cli.py qa open --run /path/to/saved-run --env-file .env` registers the run and launches the library workspace automatically. Set `TRACE_QA_DATA_DIR` or pass `--data-dir` to customize the library path (defaults to the OS user-data directory under `trace/result_guide`). Passing `--install-entries` to `register` adds workspace navigation links to saved dashboards while backing up the original HTML and leaving all JSON artefacts untouched.
 
 ---
 

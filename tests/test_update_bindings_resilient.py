@@ -11,8 +11,8 @@ from extensions import update
 from extensions.common import read, write, digest
 from extensions.input_contract import normalize_request as compile_request
 from extensions.stage_inputs import bind_stage_inputs, stage_signature
-from metapipeline.contracts import normalize_request, prepare_extraction, ContractError
-from metapipeline.pipeline import fingerprint
+from trace_runtime.contracts import normalize_request, prepare_extraction, ContractError
+from trace_runtime.pipeline import fingerprint
 
 VERSIONS = {stage: 'test-implementation-' + stage for stage in update.STAGES}
 
@@ -24,7 +24,7 @@ def case(root):
     write(content, [{'type': 'text', 'text': 'Results', 'text_level': 1, 'page_idx': 0},
                     {'type': 'text', 'text': 'Observed mortality was 5 of 19 versus 9 of 37 participants at one year.', 'page_idx': 0}])
     return normalize_request(compile_request({
-        'schema_version': 'meta_pipeline/1.0', 'case_id': 'update_example', 'topic': 'Treatment and mortality',
+        'schema_version': 'trace/1.0', 'case_id': 'update_example', 'topic': 'Treatment and mortality',
         'protocol': {'protocol_id': 'protocol', 'case_id': 'update_example', 'pico': {
             'population': 'Adults', 'intervention_or_exposure': 'Treatment', 'comparison': 'Control', 'outcome': 'All-cause mortality'},
             'targets': [{'target_id': 'death', 'outcome': 'All-cause mortality',

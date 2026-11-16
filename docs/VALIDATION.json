@@ -1,6 +1,6 @@
 {
-  "system": "TRACE (meta-pipeline)",
-  "date": "2026-11-16",
+  "system": "TRACE",
+  "date": "2026-11-17",
   "companion_benchmark": {
     "name": "EviSynth-Bench",
     "version": "1.0.1",
@@ -22,6 +22,8 @@
     "component_integration_tests": 38,
     "offline_synthetic_e2e_r_metafor": "passed",
     "markdown_local_links_checked": 58,
-    "issues": []
+    "issues": [],
+    "public_name_check": "passed",
+    "cli_entry_points_checked": 3
   }
 }

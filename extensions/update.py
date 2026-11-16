@@ -14,10 +14,10 @@ from pathlib import Path
 
 from .common import ROOT, read, write, require, digest
 from .runner import ExtensionRunner
-from metapipeline.contracts import normalize_request
-from metapipeline.pipeline import fingerprint, now
+from trace_runtime.contracts import normalize_request
+from trace_runtime.pipeline import fingerprint, now
 
-SCHEMA = 'meta_pipeline_update/1.0'
+SCHEMA = 'trace_update/1.0'
 STAGES = ('screening', 'screening_rob', 'extraction', 'review', 'analysis')
 
 
@@ -29,21 +29,21 @@ def implementation_versions():
     """Hash executable stage dependencies, including schemas and vendor prompts."""
     shared = ['extensions/input_contract.py', 'extensions/stage_inputs.py',
               'extensions/runner.py', 'extensions/common.py', 'extensions/settings.py',
-              'vendor/integration/metapipeline/pipeline.py',
+              'vendor/integration/trace_runtime/pipeline.py',
               'extensions/update.py', 'extensions/provider.py', 'extensions/transport.py',
-              'vendor/integration/metapipeline/contracts.py']
+              'vendor/integration/trace_runtime/contracts.py']
     groups = {
         'screening': ['extensions/parallel_worker.py'],
         'screening_rob': ['extensions/screening_bias.py', 'extensions/rob_resilience.py',
                           'extensions/rob_schema.py', 'extensions/bias.py'],
         'extraction': ['extensions/parallel_worker.py', 'extensions/resilient_extraction.py'],
-        'review': ['extensions/parallel_worker.py', 'vendor/integration/metapipeline/evidence_context.py'],
+        'review': ['extensions/parallel_worker.py', 'vendor/integration/trace_runtime/evidence_context.py'],
         'analysis': ['extensions/analysis_worker.py', 'extensions/analysis_cache.py',
                      'extensions/statistical_methods.py', 'extensions/statistical_method_agent.py',
                      'extensions/analysis_checkpoints.py',
                      'extensions/r_runtime.py', 'extensions/rob_resilience.py', 'extensions/bias.py',
                      'extensions/graph_feedback.py', 'extensions/brain.py',
-                     'vendor/integration/metapipeline/evidence_context.py'],
+                     'vendor/integration/trace_runtime/evidence_context.py'],
     }
     vendor = ROOT / 'vendor/integration/vendor'
     stage_roots = {
@@ -489,7 +489,7 @@ def incremental_review(request, config, submission, output):
     result = review_submission(load_case_config(config), {**data, 'predictions':pending},
         configured_model=request['options']['model'], batch_size=12,
         max_workers=_review_workers(request, len(pending)), max_retries=request['options']['max_retries'],
-        retry_delay_seconds=_env_float('META_PIPELINE_REVIEW_RETRY_DELAY_SECONDS', 60.0))
+        retry_delay_seconds=_env_float('TRACE_REVIEW_RETRY_DELAY_SECONDS', 60.0))
     prior.update({r['prediction_id']:r for r in result['candidate_reviews']})
     write(progress, {'submission_hash':digest(data), 'candidate_reviews':list(prior.values())})
     result.update(candidate_reviews=[prior[p['prediction_id']] for p in predictions if p['prediction_id'] in prior],
@@ -560,7 +560,7 @@ def write_comparison(base, output):
         candidates=read(p)['candidates'] if p.is_file() else []
         return {'screened_articles':len(dec), 'included_articles':sum(r['final_status']=='Include' for r in dec),
                 'evidence_records':len(candidates), 'evidence_studies':len({c['study_id'] for c in candidates})}
-    payload={'schema_version':'meta_pipeline_update_comparison/1.0','parent_run':str(base),'updated_run':str(output),
+    payload={'schema_version':'trace_update_comparison/1.0','parent_run':str(base),'updated_run':str(output),
              'status':read(output/'pipeline_manifest.json')['status'], 'before_counts':counts(base),
              'after_counts':counts(output),'analyses':rows,
              'sample_size_note':'Participant totals are not summed across overlapping results; inspect selected study data.',
@@ -587,7 +587,7 @@ def run_update(base_run, output, *, request_file=None, delta_file=None, settings
     from .provider import runtime, selection_values, file_values
     from .settings import load_settings
     from .document_preparation import prepare_request
-    from metapipeline.pipeline import preflight_runtime
+    from trace_runtime.pipeline import preflight_runtime
     base, old, state = load_baseline(base_run)
     output=Path(output).expanduser().resolve()
     require(output != base and not output.is_relative_to(base) and not base.is_relative_to(output),
@@ -601,7 +601,7 @@ def run_update(base_run, output, *, request_file=None, delta_file=None, settings
     require(settings['bias']['mode']=='draft' and settings['bias'].get('auto_sensitivity'), 'update requires mandatory integrated RoB policy')
     environment = dict(os.environ)
     if env_file and not plan_only: environment.update(file_values(env_file))
-    environment['META_PIPELINE_WORKERS'] = str(workers)
+    environment['TRACE_WORKERS'] = str(workers)
     new, preparation = prepare_request(new, environment, allow_conversion=not plan_only)
     new['options'].update(route_rob=True, max_workers=workers)
     if plan_only:
@@ -614,7 +614,7 @@ def run_update(base_run, output, *, request_file=None, delta_file=None, settings
             if document['paths'].get('markdown') or document['paths'].get('content_list'): document['paths'].pop('pdf',None)
     else:
         new,environment,profile = runtime(new,env_file)
-        environment['META_PIPELINE_ROB_WORKERS']=str(min(workers,2))
+        environment['TRACE_ROB_WORKERS']=str(min(workers,2))
         environment['MPLCONFIGDIR']=str(ROOT/'.cache/matplotlib')
     plan=make_plan(base,old,new,state,settings,profile)
     if plan_only:

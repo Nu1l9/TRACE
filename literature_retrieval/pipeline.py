@@ -128,7 +128,7 @@ def validate_template(raw, base):
     if any(k in raw for k in ('matched_corpus_ids', 'gold', 'expected_label', 'positive_ids', 'negative_ids')):
         raise ValueError('Evaluation labels are not allowed in a review request.')
     from extensions.input_contract import normalize_request
-    from metapipeline.contracts import normalize_request as validate
+    from trace_runtime.contracts import normalize_request as validate
     probe = deepcopy(raw)
     probe['documents'] = [{'article_id': 'retrieval_probe', 'document_id': 'retrieval_probe',
                            'study_id': 'retrieval_probe', 'paths': {'markdown': 'probe.md'}}]
