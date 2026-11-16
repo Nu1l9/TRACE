@@ -1,0 +1,25 @@
+{
+  "profile_version": "2.0.0",
+  "plan_id": "demo_declared_plan",
+  "primary_analysis_spec": {
+    "analysis_id": "primary_demo_outcome",
+    "pooled_result_id": "primary_demo_outcome",
+    "title": "Primary demo outcome",
+    "target_id": "demo_target",
+    "outcome_group": "prespecified outcome",
+    "outcome_terms": ["prespecified outcome"],
+    "eligible_data_families": ["binary_arm_counts"],
+    "accepted_effect_types": ["RR"],
+    "estimands": ["risk_ratio"],
+    "exposure": {"terms": ["intervention"]},
+    "comparison": {"terms": ["comparator"]},
+    "population": {"policy": "overall_only", "terms": ["eligible population"]},
+    "timepoint_policy": "source_defined",
+    "model_policy": "prefer the most fully adjusted eligible model",
+    "dependence_policy": "one_effect_per_study_outcome",
+    "pooling": {"model": "unspecified", "scale": "log_risk_ratio_inverse_variance", "minimum_studies": 2}
+  },
+  "secondary_outcomes": [],
+  "candidate_subgroup_dimensions": [],
+  "candidate_sensitivity_dimensions": []
+}

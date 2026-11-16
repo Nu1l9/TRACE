@@ -1,0 +1,117 @@
+{
+  "schema_version": "meta_pipeline/1.0",
+  "case_id": "ma_0025_oa_quickstart",
+  "topic": "Among patients hospitalized with severe influenza, do convalescent plasma or hyperimmune immunoglobulin products reduce all-cause mortality versus a control product or placebo?",
+  "protocol": {
+    "protocol_id": "ma_0025_oa_quickstart_protocol",
+    "case_id": "ma_0025_oa_quickstart",
+    "pico": {
+      "population": "Adults or children hospitalized with severe influenza",
+      "intervention_or_exposure": "Convalescent plasma or hyperimmune intravenous immunoglobulin",
+      "comparison": "Standard care alone, control plasma, intravenous immunoglobulin, or placebo, with otherwise comparable standard care",
+      "outcome": "All-cause mortality"
+    },
+    "eligible_study_designs": [
+      "randomized controlled trial"
+    ],
+    "targets": [
+      {
+        "target_id": "all_cause_mortality_convalescent_plasma_or_hivig_vs_control",
+        "outcome": "All-cause mortality",
+        "comparison": "Convalescent plasma or hyperimmune intravenous immunoglobulin plus standard care versus standard care alone, control plasma, intravenous immunoglobulin, or placebo, with otherwise comparable standard care",
+        "population_or_subgroup": "Adults or children hospitalized with severe influenza",
+        "timepoint_policy": {
+          "rule": "Capture the source-defined mortality window and retain its duration and analysis population."
+        },
+        "accepted_data_families": [
+          "binary_arm_counts"
+        ],
+        "preferred_effect_measures": [
+          "RR"
+        ],
+        "estimands": [
+          "risk_ratio_all_cause_mortality_convalescent_plasma_or_hivig_vs_control"
+        ],
+        "effect_selection_rule": null,
+        "extraction_notes": [
+          "Extract counts, denominators, cohort and timepoint only; effect calculation belongs to the calculator."
+        ],
+        "source_constraints": [
+          "Do not use target-review forest counts or effects.",
+          "Do not mix randomised and post-randomisation analysis populations within a study.",
+          "Use a documented 0.5 correction only when a 2x2 table has a zero cell."
+        ]
+      }
+    ],
+    "statistical_method_policy": "fixed"
+  },
+  "analysis_profile": {
+    "profile_version": "2.0.0",
+    "primary_analysis_spec": {
+      "analysis_id": "primary_convalescent_plasma_influenza_mortality",
+      "outcome_group": "All-cause mortality in severe influenza",
+      "target_id": "all_cause_mortality_convalescent_plasma_or_hivig_vs_control",
+      "eligible_outcome_codes": [
+        "all_cause_mortality_convalescent_plasma_or_hivig_vs_control"
+      ],
+      "eligible_data_families": [
+        "binary_arm_counts"
+      ],
+      "accepted_effect_types": [
+        "RR"
+      ],
+      "estimands": [
+        "risk_ratio_all_cause_mortality_convalescent_plasma_or_hivig_vs_control"
+      ],
+      "selection_rules": [
+        "Select one complete immune-product versus eligible control mortality record per independent influenza RCT; standard care alone is an eligible comparator.",
+        "Require source-reported death counts and denominators in both arms.",
+        "Exclude target-review rows, target pooled effects, observational comparisons, and source populations with undocumented denominators.",
+        "Select at most one eligible effect per independent study for this analysis.",
+        "Timepoint eligibility: Capture the source-defined mortality window and retain its duration and analysis population.",
+        "Do not use target-review forest counts or effects.",
+        "Do not mix randomised and post-randomisation analysis populations within a study.",
+        "Use a documented 0.5 correction only when a 2x2 table has a zero cell.",
+        "Extract counts, denominators, cohort and timepoint only; effect calculation belongs to the calculator."
+      ],
+      "pooling": {
+        "model": "random_effects",
+        "scale": "log_risk_ratio_inverse_variance",
+        "heterogeneity_estimator": "reml",
+        "confidence_interval": "normal_approximation",
+        "minimum_independent_studies": 2,
+        "minimum_studies": 2
+      },
+      "outcome_terms": [
+        "All-cause mortality in severe influenza"
+      ],
+      "exposure": {
+        "terms": [
+          "Convalescent plasma or hyperimmune intravenous immunoglobulin"
+        ]
+      },
+      "comparison": {
+        "terms": [
+          "Convalescent plasma or hyperimmune intravenous immunoglobulin plus standard care versus standard care alone, control plasma, intravenous immunoglobulin, or placebo, with otherwise comparable standard care"
+        ]
+      },
+      "population": {
+        "terms": [
+          "Adults or children hospitalized with severe influenza"
+        ],
+        "policy": "any"
+      },
+      "timepoint_policy": "source_defined",
+      "timepoint_constraints": "Capture the source-defined mortality window and retain its duration and analysis population.",
+      "model_policy": "Prefer a source-reported model compatible with the declared estimand; retain its adjustment and exposure units."
+    },
+    "secondary_outcomes": []
+  },
+  "documents": [],
+  "options": {
+    "extraction_runtime": "typed",
+    "route_rob": true,
+    "max_retries": 3,
+    "max_workers": 2
+  }
+}

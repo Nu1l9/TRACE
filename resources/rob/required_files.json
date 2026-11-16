@@ -1,0 +1,250 @@
+{
+  "files": [
+    {
+      "path": "catalog.json",
+      "sha256": "820d2ad9b5368fbf3cb70c6dfb76dcf8db8eb1d5e8d4c90407ed2475aca5da03",
+      "bytes": 10093
+    },
+    {
+      "path": "original/PROBAST/PROBAST_latest_version_page.url.txt",
+      "sha256": "d96c95142d9cdf456527e82c7eadb7b4f9ff311af65e8f245889dbe845283d90",
+      "bytes": 26
+    },
+    {
+      "path": "original/QUADAS 3/QUADAS3_latest_version_page.url.txt",
+      "sha256": "b3adbcb8f131432e02bac8f5c258461eac56bfc17f4f76f605c2bb2e247078e1",
+      "bytes": 80
+    },
+    {
+      "path": "original/QUIPS/QUIPS_latest_version_page.url.txt",
+      "sha256": "6298c032665bdaaa1f4eeb8623d766ac61d5afaa4339402ad20225a9bb7e1d99",
+      "bytes": 46
+    },
+    {
+      "path": "original/ROBINS-E/ROBINS-E_latest_version_page.url.txt",
+      "sha256": "cdf19342ed66c641853222816b9293f39c9e27215e64d90b54cbba7db9f1a7e0",
+      "bytes": 51
+    },
+    {
+      "path": "original/ROBINS-I/ROBINS-I_latest_version_page.url.txt",
+      "sha256": "fc147fa93092356f68702901770397847fa2e198a9792549ab6faad9186d4b48",
+      "bytes": 49
+    },
+    {
+      "path": "original/RoB 2/RoB2_latest_version_page.url.txt",
+      "sha256": "d05c8c2f83a97e528ba0a335e1ac4718b40c118f1677f21efff0cfb985034e4f",
+      "bytes": 50
+    },
+    {
+      "path": "quips_rubric.txt",
+      "sha256": "9e6f4a18d18c4cf6323796f300b59ed85f4a3ef3f2e02569c21da4e6c20d76cc",
+      "bytes": 7812
+    },
+    {
+      "path": "text/PROBAST/01_PROBAST_development_paper_2019.txt",
+      "sha256": "ec0fa4ba071c7077fe264917d854af9d8ec9cf1a2a807e64c1aa8ee9ba6067eb",
+      "bytes": 57318
+    },
+    {
+      "path": "text/PROBAST/02_PROBAST_explanation_elaboration_2019.txt",
+      "sha256": "d5e10e0fe40145687c13eab30a907518335010e2f5af9efb4287c7883cf068d1",
+      "bytes": 218436
+    },
+    {
+      "path": "text/PROBAST/03_PROBAST_2019_checklist_score_sheet.txt",
+      "sha256": "3fd64035c3e6e1a2babb0b18e6c8d7ae8c04237294dc62b3c238d2b04378b32e",
+      "bytes": 13280
+    },
+    {
+      "path": "text/PROBAST/04_PROBAST_AI_latest_development_guidance_2025.txt",
+      "sha256": "b820c91eab552c9e2b10eae1cc235389d960ea774e7b2656266e5b237768ddb7",
+      "bytes": 102352
+    },
+    {
+      "path": "text/PROBAST/05_PROBAST_AI_latest_score_sheet_table3.txt",
+      "sha256": "7889165e1baf3e2d1ba4d42a5dca724eb4abb6524c3a82d8755ed04132320092",
+      "bytes": 19328
+    },
+    {
+      "path": "text/PROBAST/06_PROBAST_AI_explanation_elaboration_light_table4.txt",
+      "sha256": "1ba82d8423a55053199b2f41d5a148f42f9f8fe1299c1b5620ae699a620d4f6c",
+      "bytes": 69434
+    },
+    {
+      "path": "text/PROBAST/PROBAST_latest_version_page.url.txt",
+      "sha256": "d96c95142d9cdf456527e82c7eadb7b4f9ff311af65e8f245889dbe845283d90",
+      "bytes": 26
+    },
+    {
+      "path": "text/PROBAST/README.txt",
+      "sha256": "a189e434f225109b1b6d24b46507f3ce6e9752451cb44ba032d021057df8ed1a",
+      "bytes": 935
+    },
+    {
+      "path": "text/QUADAS 3/01_QUADAS3_development_paper_2026.txt",
+      "sha256": "3e9ca224fb88690331eb3f6c529c60a05d5e3ea9d2d3da432e5918233c71dfd0",
+      "bytes": 31759
+    },
+    {
+      "path": "text/QUADAS 3/02_QUADAS3_latest_version_1.2_score_sheet.txt",
+      "sha256": "7764bd1783e10f70b90e58503b047b7130450cc1de6fecc5fd4042e747cde840",
+      "bytes": 18186
+    },
+    {
+      "path": "text/QUADAS 3/03_QUADAS3_explanation_elaboration_complete_guidance_2026.txt",
+      "sha256": "9f3555615eefddcd5227855d3198bea895a954f85d537d1c63bddb4552d064e0",
+      "bytes": 140709
+    },
+    {
+      "path": "text/QUADAS 3/QUADAS3_latest_version_page.url.txt",
+      "sha256": "b3adbcb8f131432e02bac8f5c258461eac56bfc17f4f76f605c2bb2e247078e1",
+      "bytes": 80
+    },
+    {
+      "path": "text/QUADAS 3/README.txt",
+      "sha256": "39c5d5d3a26ce3e0a703acb7e861205f1c29884a975fa6e13673b4c6e7645d02",
+      "bytes": 657
+    },
+    {
+      "path": "text/QUIPS/01_QUIPS_development_paper_2013_source.txt",
+      "sha256": "1f38a66f29c77b814defc15281ac9eb04764a674f0baa1135d58ae789a7473bc",
+      "bytes": 45167
+    },
+    {
+      "path": "text/QUIPS/02_QUIPS_use_and_application_guidance_2019.txt",
+      "sha256": "c3a0e6b17b9a25d7211a709ef442cb0c2849fd2aa3f7c63332b75ac705a54023",
+      "bytes": 56005
+    },
+    {
+      "path": "text/QUIPS/03_QUIPS_score_sheet.txt",
+      "sha256": "2c7c3de0cee08235e8f09c0634bc74329e6738837688311f3d4c5c3874cf75eb",
+      "bytes": 13008
+    },
+    {
+      "path": "text/QUIPS/QUIPS_latest_version_page.url.txt",
+      "sha256": "6298c032665bdaaa1f4eeb8623d766ac61d5afaa4339402ad20225a9bb7e1d99",
+      "bytes": 46
+    },
+    {
+      "path": "text/QUIPS/README.txt",
+      "sha256": "f3c0817e587385eed0d75bd922fa78339706916667816ac7e2e79f2b4d33aa3b",
+      "bytes": 675
+    },
+    {
+      "path": "text/README.txt",
+      "sha256": "023982dd0282d1f4d713013086a2a17a4eabd8a1165bb93b00eb8a1973633541",
+      "bytes": 506
+    },
+    {
+      "path": "text/ROBINS-E/01_ROBINS-E_development_paper_2024.txt",
+      "sha256": "1319995a21e384522905748cabdeb6e0220e6bea452c7d20d81863079e95e428",
+      "bytes": 49871
+    },
+    {
+      "path": "text/ROBINS-E/02_ROBINS-E_latest_version_full_guidance_24March2024.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "text/ROBINS-E/03_ROBINS-E_score_sheet_template_24March2024.txt",
+      "sha256": "e8ba7a176e56148438e7efeb310e52b6be775e8584e3c7ebc6d3ca1751969e9a",
+      "bytes": 28931
+    },
+    {
+      "path": "text/ROBINS-E/04_ROBINS-E_score_sheet_Excel_24March2024.txt",
+      "sha256": "9d0a9d100ac616f25c0c1ae9c91dfc5c1cba3f89a600b9e6ccbf5e11362dac89",
+      "bytes": 224686
+    },
+    {
+      "path": "text/ROBINS-E/README.txt",
+      "sha256": "52f852bc6d3007c220f5631bb6729c0086956421b49bb35382830faa05340938",
+      "bytes": 656
+    },
+    {
+      "path": "text/ROBINS-E/ROBINS-E_latest_version_page.url.txt",
+      "sha256": "cdf19342ed66c641853222816b9293f39c9e27215e64d90b54cbba7db9f1a7e0",
+      "bytes": 51
+    },
+    {
+      "path": "text/ROBINS-I/01_ROBINS-I_development_paper_2016.txt",
+      "sha256": "18542292f793e8de8f617f9a3d6f7d3dd6647fab6c5197ea3d3c48411f47529c",
+      "bytes": 46325
+    },
+    {
+      "path": "text/ROBINS-I/03_ROBINS-I_detailed_guidance_2016.txt",
+      "sha256": "27ecb5dad7ce0d33b1e777694f07755198d5277cc42433ba2e5ba88aaa52669f",
+      "bytes": 167833
+    },
+    {
+      "path": "text/ROBINS-I/04_ROBINS-I_score_sheet_template_2016.txt",
+      "sha256": "36a2f0a2d511f8d25ebed047554fc44713c8bc7b31fbf66afdfb17811fffda87",
+      "bytes": 43233
+    },
+    {
+      "path": "text/ROBINS-I/05_ROBINS-I_V2_latest_cribsheet_20November2025.txt",
+      "sha256": "61bed90adcde0a30a5884def7c6406ea668c797dd6f45f21cf22efea58f85dc7",
+      "bytes": 111314
+    },
+    {
+      "path": "text/ROBINS-I/06_ROBINS-I_V2_archived_full_22November2024.txt",
+      "sha256": "21b836c1cbcfebb82f80972ae40e29297867b729ca7a43fe7a3c0c854af73576",
+      "bytes": 95396
+    },
+    {
+      "path": "text/ROBINS-I/README.txt",
+      "sha256": "56013fcb7678882e3e1f295f271c11a9c9b74b5d45ae5f3b6732ef444d79c8d4",
+      "bytes": 811
+    },
+    {
+      "path": "text/ROBINS-I/ROBINS-I_latest_version_page.url.txt",
+      "sha256": "fc147fa93092356f68702901770397847fa2e198a9792549ab6faad9186d4b48",
+      "bytes": 49
+    },
+    {
+      "path": "text/ROBINS-I V2/ROBINS-I_V2_cribsheet_2025-11-20.txt",
+      "sha256": "eb90aeed222d527e170b3a66be114b741b550d76437cbb40a615d89f8b28d2b0",
+      "bytes": 101226
+    },
+    {
+      "path": "text/RoB 2/01_RoB2_development_paper_2019.txt",
+      "sha256": "67d53ba21935b1b0b57033fc3a6b71173f8b0ce1a1411193344d2ccfbd530d6f",
+      "bytes": 53082
+    },
+    {
+      "path": "text/RoB 2/02_RoB2_full_guidance_2019.txt",
+      "sha256": "f86bac7fa21a3999eade42c87d603bead085feb51db58f9f7da1ff221110e575",
+      "bytes": 234619
+    },
+    {
+      "path": "text/RoB 2/03_RoB2_cribsheet_2019.txt",
+      "sha256": "3d0d171e2785e892de8132983d3a8284e1d982222485f681ef9d69c95e580824",
+      "bytes": 40104
+    },
+    {
+      "path": "text/RoB 2/04_RoB2_score_sheet_template_2019.txt",
+      "sha256": "72149b29281814cca849094347428a451195f3b64011a1218f593c2af3063c58",
+      "bytes": 9292
+    },
+    {
+      "path": "text/RoB 2/05_RoB2_score_sheet_Excel_2019.txt",
+      "sha256": "c19d9f720918ab55150b78f2dc75c43e1babc6aa2ece91ee4cd164618971e895",
+      "bytes": 15923
+    },
+    {
+      "path": "text/RoB 2/README.txt",
+      "sha256": "715bc0190e7412771e1c619e1f8e36f099fe81d4b8b29bf520e7c4a9ebf0556c",
+      "bytes": 677
+    },
+    {
+      "path": "text/RoB 2/RoB2_latest_version_page.url.txt",
+      "sha256": "d05c8c2f83a97e528ba0a335e1ac4718b40c118f1677f21efff0cfb985034e4f",
+      "bytes": 50
+    },
+    {
+      "path": "text/╞½╥╨╖╓╬÷┴≈│╠.txt",
+      "sha256": "e40c41efe22044d8a4d81f3a95510572f73c8186e6ed214b50945d06684696d1",
+      "bytes": 9
+    }
+  ],
+  "policy": "External guidance is not distributed. Install separately from an authorized local copy."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "meta_pipeline/1.0",
+  "case_id": "demo_case",
+  "topic": "Synthetic interface test: intervention versus comparator and prespecified outcome",
+  "protocol": {
+    "protocol_id": "demo_protocol",
+    "case_id": "demo_case",
+    "pico": {
+      "intervention_or_exposure": {
+        "description": "intervention"
+      },
+      "comparison": {
+        "description": "comparator"
+      },
+      "population": {
+        "description": "eligible population"
+      },
+      "outcome": {
+        "description": "prespecified outcome"
+      }
+    },
+    "targets": [
+      {
+        "target_id": "demo_target",
+        "outcome": {
+          "description": "prespecified outcome"
+        },
+        "accepted_data_families": [
+          "binary_arm_counts"
+        ],
+        "preferred_effect_measures": [
+          "RR"
+        ],
+        "estimands": [
+          "risk_ratio"
+        ]
+      }
+    ]
+  },
+  "analysis_profile": {
+    "profile_version": "2.0.0",
+    "plan_id": "demo_declared_plan",
+    "primary_analysis_spec": {
+      "analysis_id": "primary_demo_outcome",
+      "pooled_result_id": "primary_demo_outcome",
+      "title": "Primary demo outcome",
+      "target_id": "demo_target",
+      "outcome_group": "prespecified outcome",
+      "outcome_terms": [
+        "prespecified outcome"
+      ],
+      "eligible_data_families": [
+        "binary_arm_counts"
+      ],
+      "accepted_effect_types": [
+        "RR"
+      ],
+      "estimands": [
+        "risk_ratio"
+      ],
+      "exposure": {
+        "terms": [
+          "intervention"
+        ]
+      },
+      "comparison": {
+        "terms": [
+          "comparator"
+        ]
+      },
+      "population": {
+        "policy": "overall_only",
+        "terms": [
+          "eligible population"
+        ]
+      },
+      "timepoint_policy": "source_defined",
+      "model_policy": "prefer the most fully adjusted eligible model",
+      "dependence_policy": "one_effect_per_study_outcome"
+    },
+    "secondary_outcomes": [],
+    "candidate_subgroup_dimensions": [],
+    "candidate_sensitivity_dimensions": []
+  },
+  "options": {
+    "provider": "official_openai",
+    "model": "gpt-5.6-luna",
+    "extraction_runtime": "typed",
+    "route_rob": false,
+    "max_retries": 1,
+    "max_workers": 2
+  }
+}

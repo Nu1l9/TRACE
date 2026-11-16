@@ -1,0 +1,69 @@
+{
+  "schema_version": "meta_pipeline_quickstart_sources/1.0",
+  "case_id": "ma_0025_oa_quickstart",
+  "derived_from": "ma_0025",
+  "verified_on": "2026-10-21",
+  "scope": "Two PMC Open Access trial reports by default, with an optional third publicly accessible author manuscript for incremental updates.",
+  "sources": [
+    {
+      "pmcid": "PMC5828518",
+      "version": 1,
+      "pmid": 28522352,
+      "doi": "10.1016/S2213-2600(17)30174-1",
+      "title": "A Randomized Study of Immune Plasma for the Treatment of Severe Influenza",
+      "is_pmc_openaccess": true,
+      "is_manuscript": true,
+      "license_code": "TDM",
+      "license_text": [
+        "This manuscript version is made available under the CC BY-NC-ND 4.0 license."
+      ],
+      "study_id": "NCT01052480",
+      "default": true,
+      "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5828518/",
+      "metadata_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC5828518.1/PMC5828518.1.json",
+      "xml_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC5828518.1/PMC5828518.1.xml?md5=e2154b9817cf436a5c460ac5446bf079",
+      "xml_sha256": "2102fe5dbfef4211d3dc0f19abea2e83fefcb787eded0162d2ad634421e96aff",
+      "xml_md5": "e2154b9817cf436a5c460ac5446bf079"
+    },
+    {
+      "pmcid": "PMC6868512",
+      "version": 1,
+      "pmid": 31582358,
+      "doi": "10.1016/S2213-2600(19)30253-X",
+      "title": "Anti-influenza hyperimmune intravenous immunoglobulin for adults with influenza A or B infection (FLU-IVIG): a double-blind, randomised, placebo-controlled trial",
+      "is_pmc_openaccess": true,
+      "is_manuscript": false,
+      "license_code": "CC BY-NC-ND",
+      "license_text": [
+        "https://creativecommons.org/licenses/by-nc-nd/4.0/This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/)."
+      ],
+      "study_id": "NCT02287467",
+      "default": true,
+      "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6868512/",
+      "metadata_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6868512.1/PMC6868512.1.json",
+      "xml_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6868512.1/PMC6868512.1.xml?md5=a01e3e28a4c7a59cd4640783f5d28e3a",
+      "xml_sha256": "8e36b437b94d0fed97578caab58db971e5deeff64e450d6b5afe9e6431662791",
+      "xml_md5": "a01e3e28a4c7a59cd4640783f5d28e3a"
+    },
+    {
+      "pmcid": "PMC6941345",
+      "version": 1,
+      "pmid": 31582360,
+      "doi": "10.1016/S2213-2600(19)30199-7",
+      "title": "A Randomised Study of Anti-Influenza Immune Plasma for the Treatment of Severe Influenza A",
+      "is_pmc_openaccess": false,
+      "is_manuscript": true,
+      "license_code": "TDM",
+      "license_text": [
+        "This file is available for text mining. It may also be used consistent with the principles of fair use under the copyright law."
+      ],
+      "study_id": "NCT02572817",
+      "default": false,
+      "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6941345/",
+      "metadata_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6941345.1/PMC6941345.1.json",
+      "xml_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6941345.1/PMC6941345.1.xml?md5=16885485dd4f9a65a0a8d1301c22cf31",
+      "xml_sha256": "87a914aa86dacceed3c0a813ae40531addc0771d21e2200d90c75a604689e6ac",
+      "xml_md5": "16885485dd4f9a65a0a8d1301c22cf31"
+    }
+  ]
+}

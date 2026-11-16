@@ -1,0 +1,20 @@
+{
+  "case_id": "demo_case",
+  "decisions": [
+    {
+      "candidate_id": "article_a",
+      "final_status": "Include",
+      "reason": "synthetic fixture"
+    },
+    {
+      "candidate_id": "article_b",
+      "final_status": "Include",
+      "reason": "synthetic fixture"
+    },
+    {
+      "candidate_id": "article_c",
+      "final_status": "Exclude",
+      "reason": "synthetic fixture"
+    }
+  ]
+}

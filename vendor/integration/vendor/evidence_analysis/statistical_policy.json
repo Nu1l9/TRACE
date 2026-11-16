@@ -1,0 +1,12 @@
+{
+  "policy_id": "reml_normal_fixed",
+  "version": 1,
+  "default_model": "random_effects",
+  "heterogeneity_estimator": "reml",
+  "primary_ci": "normal_approximation",
+  "confidence_level": 0.95,
+  "explicit_fixed_model": "fixed_effect + normal_approximation",
+  "declared_clustered_route": "preserve existing dedicated tool",
+  "secondary_ci": "hartung_knapp_t, recorded separately as sensitivity",
+  "leave_one_out": "same model, estimator, interval and effects conversion as primary"
+}

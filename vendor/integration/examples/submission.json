@@ -1,0 +1,59 @@
+{
+  "case_id": "demo_case",
+  "predictions": [
+    {
+      "prediction_id": "ev_1",
+      "article_id": "article_a",
+      "study_id": "study_a",
+      "target_id": "demo_target",
+      "outcome": "prespecified outcome",
+      "exposure": "intervention",
+      "comparator": "comparator",
+      "population_or_subgroup": "eligible population",
+      "timepoint": "source-defined",
+      "data_family": "binary_arm_counts",
+      "estimand": "risk_ratio",
+      "raw_data": {
+        "intervention_events": 10,
+        "intervention_total": 100,
+        "control_events": 20,
+        "control_total": 100
+      },
+      "used_effect": {},
+      "source_location": {
+        "document_id": "article_a",
+        "source_type": "table",
+        "source_id": "Table 1",
+        "source_quote": "synthetic fixture"
+      },
+      "verification_status": "accepted"
+    },
+    {
+      "prediction_id": "ev_2",
+      "article_id": "article_b",
+      "study_id": "study_b",
+      "target_id": "demo_target",
+      "outcome": "prespecified outcome",
+      "exposure": "intervention",
+      "comparator": "comparator",
+      "population_or_subgroup": "eligible population",
+      "timepoint": "source-defined",
+      "data_family": "binary_arm_counts",
+      "estimand": "risk_ratio",
+      "raw_data": {
+        "intervention_events": 11,
+        "intervention_total": 100,
+        "control_events": 21,
+        "control_total": 100
+      },
+      "used_effect": {},
+      "source_location": {
+        "document_id": "article_b",
+        "source_type": "table",
+        "source_id": "Table 1",
+        "source_quote": "synthetic fixture"
+      },
+      "verification_status": "accepted"
+    }
+  ]
+}

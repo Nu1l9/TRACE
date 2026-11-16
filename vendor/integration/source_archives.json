@@ -1,0 +1,14 @@
+[
+  {
+    "component": "miners",
+    "distribution": "embedded_source"
+  },
+  {
+    "component": "evidence_extraction",
+    "distribution": "embedded_source"
+  },
+  {
+    "component": "evidence_analysis",
+    "distribution": "embedded_source"
+  }
+]

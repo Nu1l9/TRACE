@@ -1,0 +1,36 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "demo_evidence_001",
+      "article_id": "demo_article_001",
+      "study_id": "demo_study_001",
+      "target_id": "demo_target",
+      "exposure": "intervention",
+      "comparison": "comparator",
+      "outcome": {"label": "prespecified outcome", "code": "demo_outcome"},
+      "population_or_subgroup": "eligible population",
+      "timepoint": "12 months",
+      "data_family": "binary_arm_counts",
+      "estimand": "risk_ratio",
+      "raw_data": {"intervention_events": 10, "intervention_total": 100, "control_events": 15, "control_total": 100},
+      "effect": {"effect_type": "RR", "value": 0.67, "ci_lower": 0.31, "ci_upper": 1.43},
+      "source_location": {"document_id": "demo_article_001", "page": 4, "table": "Table 2"}
+    },
+    {
+      "candidate_id": "demo_evidence_002",
+      "article_id": "demo_article_002",
+      "study_id": "demo_study_002",
+      "target_id": "demo_target",
+      "exposure": "intervention",
+      "comparison": "comparator",
+      "outcome": {"label": "prespecified outcome", "code": "demo_outcome"},
+      "population_or_subgroup": "eligible population",
+      "timepoint": "12 months",
+      "data_family": "binary_arm_counts",
+      "estimand": "risk_ratio",
+      "raw_data": {"intervention_events": 8, "intervention_total": 80, "control_events": 16, "control_total": 80},
+      "effect": {"effect_type": "RR", "value": 0.5, "ci_lower": 0.23, "ci_upper": 1.09},
+      "source_location": {"document_id": "demo_article_002", "page": 5, "table": "Table 2"}
+    }
+  ]
+}

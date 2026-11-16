@@ -1,0 +1,4 @@
+[
+{"ID": 1, "title": "Synthetic intervention versus comparator study", "abstract": "Randomized comparison of intervention and comparator in eligible population reporting prespecified outcome.", "year": 2020, "study_id": "synthetic_trial_A", "sections": {"Methods": "Synthetic illustration only: randomized intervention and comparator groups, ten participants each.", "Results": "Prespecified outcome occurred in 5 of 10 intervention participants and 10 of 10 comparator participants."}},
+{"ID": 2, "title": "Synthetic unrelated geography report", "abstract": "Mountain geology survey.", "year": 2020, "study_id": "synthetic_survey_B", "sections": {"Results": "Synthetic nonclinical text."}}
+]

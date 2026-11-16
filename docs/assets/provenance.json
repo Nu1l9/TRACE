@@ -1,0 +1,27 @@
+{
+  "manuscript": "TRACE: traceable, reviewable, agentic and cross-stage evidence synthesis for medical meta-analysis",
+  "figures": [
+    {
+      "figure": 1,
+      "file": "fig1-system.png",
+      "sha256": "50d25676189b8458a8861a9c624abaa74d08064749c5c76d16d8cbd48a82530d",
+      "bytes": 737260,
+      "dimensions_px": [
+        4323,
+        5076
+      ],
+      "description": "TRACE system architecture, cross-stage evidence traceability, EviSynth-Bench construction and four-tier evaluation design"
+    },
+    {
+      "figure": 5,
+      "file": "fig5-evidence-qa.png",
+      "sha256": "9c503937be0ab283072a3a6a584e6841906d59a9d1ea3c927300979e6e588451",
+      "bytes": 920872,
+      "dimensions_px": [
+        4322,
+        3732
+      ],
+      "description": "Read-only provenance-linked question answering over frozen evidence state (MA0032)"
+    }
+  ]
+}

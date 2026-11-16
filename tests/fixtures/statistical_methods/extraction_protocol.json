@@ -1,0 +1,11 @@
+{
+  "protocol_id": "demo_protocol",
+  "case_id": "demo_case",
+  "pico": {
+    "intervention_or_exposure": {"description": "intervention"},
+    "comparison": {"description": "comparator"},
+    "population": {"description": "eligible population"},
+    "outcome": {"description": "prespecified outcome"}
+  },
+  "targets": [{"target_id": "demo_target", "outcome": {"description": "prespecified outcome"}}]
+}

@@ -1,0 +1,27 @@
+{
+  "system": "TRACE (meta-pipeline)",
+  "date": "2026-11-16",
+  "companion_benchmark": {
+    "name": "EviSynth-Bench",
+    "version": "1.0.1",
+    "cases": 22,
+    "candidate_document_entries": 562,
+    "extraction_targets": 288,
+    "main_analyses": 30,
+    "extension_analyses": 47,
+    "data_family_schemas": 26
+  },
+  "public_figures": {
+    "docs/assets/fig1-system.png": "50d25676189b8458a8861a9c624abaa74d08064749c5c76d16d8cbd48a82530d",
+    "docs/assets/fig5-evidence-qa.png": "9c503937be0ab283072a3a6a584e6841906d59a9d1ea3c927300979e6e588451"
+  },
+  "verification": {
+    "repository_boundary_check": "passed",
+    "portable_python_suites": 33,
+    "portable_python_tests": 262,
+    "component_integration_tests": 38,
+    "offline_synthetic_e2e_r_metafor": "passed",
+    "markdown_local_links_checked": 58,
+    "issues": []
+  }
+}

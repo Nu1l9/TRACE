@@ -1,0 +1,4 @@
+# Optional: local Dense retrieval and CrossEncoder reranking.
+# These packages/models were not installed or downloaded during integration.
+sentence-transformers>=3.0,<6
+torch>=2.2,<3

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Protocol statistical method policy",
+  "type": "object",
+  "properties": {
+    "statistical_method_policy": {
+      "type": "string",
+      "enum": ["fixed", "model_selected"],
+      "default": "fixed",
+      "description": "fixed uses the prespecified statistical policy; model_selected invokes the source-aware method selector before calculation. Omission resolves to fixed."
+    }
+  },
+  "additionalProperties": true
+}

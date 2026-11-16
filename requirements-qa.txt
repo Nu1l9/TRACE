@@ -1,0 +1,4 @@
+# SDK stack used for the standalone results-assistant integration tests.
+openai==2.24.0
+httpx==0.28.1
+python-dotenv==1.2.1

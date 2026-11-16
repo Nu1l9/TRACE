@@ -1,0 +1,132 @@
+{
+  "schema_version": "rob_resource_catalog/1.0",
+  "policy": "Metadata only. External resources and compact model inputs require separately authorized local copies. Hashes identify content; they grant no rights.",
+  "tools": [
+    {
+      "id": "quips",
+      "tool": "QUIPS",
+      "version": "2013",
+      "source_url": "https://methods.cochrane.org/prognosis/tools",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "quips_rubric.txt",
+        "sha256": "9e6f4a18d18c4cf6323796f300b59ed85f4a3ef3f2e02569c21da4e6c20d76cc",
+        "bytes": 7812
+      },
+      "prompt": {
+        "path": "prompts/quips.txt",
+        "sha256": "f1c6549807501b3ee1ac4ac0e51bd722abd49728c1912351640bd60ce0d85dab",
+        "bytes": 2257
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "rob2",
+      "tool": "RoB 2",
+      "version": "2019-08-22",
+      "source_url": "https://www.riskofbias.info/welcome/rob-2-0-tool",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/RoB 2/03_RoB2_cribsheet_2019.txt",
+        "sha256": "3d0d171e2785e892de8132983d3a8284e1d982222485f681ef9d69c95e580824",
+        "bytes": 40104
+      },
+      "prompt": {
+        "path": "prompts/rob2.txt",
+        "sha256": "25944b72fca3bbe73371f5c6df1ff508446baa49f59e6b8be5bbc14ac3db24e7",
+        "bytes": 1787
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "robins-i",
+      "tool": "ROBINS-I",
+      "version": "V2-2025-11-20-draft",
+      "source_url": "https://www.riskofbias.info/welcome/robins-i-tool",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/ROBINS-I V2/ROBINS-I_V2_cribsheet_2025-11-20.txt",
+        "sha256": "eb90aeed222d527e170b3a66be114b741b550d76437cbb40a615d89f8b28d2b0",
+        "bytes": 101226
+      },
+      "prompt": {
+        "path": "prompts/robins-i.txt",
+        "sha256": "7288673283f767b9e00b5f606b2bb0f09edf426994a3332584d4a364d0705f11",
+        "bytes": 1759
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "robins-e",
+      "tool": "ROBINS-E",
+      "version": "2024-03-24",
+      "source_url": "https://www.riskofbias.info/welcome/robins-e-tool",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/ROBINS-E/03_ROBINS-E_score_sheet_template_24March2024.txt",
+        "sha256": "e8ba7a176e56148438e7efeb310e52b6be775e8584e3c7ebc6d3ca1751969e9a",
+        "bytes": 28931
+      },
+      "prompt": {
+        "path": "prompts/robins-e.txt",
+        "sha256": "318545ce8be1b7e3a153293ef02cdaffc68b76748e841ee9975f13f42bfec1ae",
+        "bytes": 615
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "quadas3",
+      "tool": "QUADAS-3",
+      "version": "1.2 (2026)",
+      "source_url": "https://www.bristol.ac.uk/population-health-sciences/projects/quadas/quadas-3/",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/QUADAS 3/02_QUADAS3_latest_version_1.2_score_sheet.txt",
+        "sha256": "7764bd1783e10f70b90e58503b047b7130450cc1de6fecc5fd4042e747cde840",
+        "bytes": 18186
+      },
+      "prompt": {
+        "path": "prompts/quadas3.txt",
+        "sha256": "0c4214bb278ae8cafec327a31267d1a4a83e050b53fe955816555c197091cead",
+        "bytes": 412
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "probast-ai",
+      "tool": "PROBAST+AI",
+      "version": "2025",
+      "source_url": "https://www.probast.org/",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/PROBAST/05_PROBAST_AI_latest_score_sheet_table3.txt",
+        "sha256": "7889165e1baf3e2d1ba4d42a5dca724eb4abb6524c3a82d8755ed04132320092",
+        "bytes": 19328
+      },
+      "prompt": {
+        "path": "prompts/probast-ai.txt",
+        "sha256": "9c34337c72c4977d0a68a89b922de6337b3bbe7dec58d2669c9c4cbd29a5d852",
+        "bytes": 412
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    },
+    {
+      "id": "robins-i-2016",
+      "tool": "ROBINS-I",
+      "version": "2016",
+      "source_url": "https://www.riskofbias.info/welcome/robins-i-tool",
+      "requirement": "Only when this instrument/version is routed; install all entries for all supported routes.",
+      "guide": {
+        "path": "text/ROBINS-I/04_ROBINS-I_score_sheet_template_2016.txt",
+        "sha256": "36a2f0a2d511f8d25ebed047554fc44713c8bc7b31fbf66afdfb17811fffda87",
+        "bytes": 43233
+      },
+      "prompt": {
+        "path": "prompts/robins-i-2016.txt",
+        "sha256": "e67ae09ea40980e3575e0140f8ec1d1fc400899bcb408e2625815f5c22a5b655",
+        "bytes": 1010
+      },
+      "permission_status": "External-only; exact text and compact adaptation not cleared for public redistribution."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+# Credentials and local provider settings
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+config/provider.json
+# Environments / caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+cache/
+.DS_Store
+.idea/
+.vscode/
+# Research data, output and conversations
+work/
+data/
+runs/
+outputs/
+audit/
+gold/
+input_corpora/
+benchmark_runs/
+benchmark_packages/
+expert_qa_library/
+expert_qa_sessions/
+review_handoffs/
+expert_reviews/
+document_io/cache/
+*.log
+Rplots.pdf
+# Separately installed guidance; only its inventory and instructions are source
+resources/rob/*
+!resources/rob/required_files.json
+!resources/rob/README.md
+!resources/rob/README_zh.md
+# Distribution output
+releases/
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Evaluation assets belong in the separate benchmark repository
+cases/
+evaluation/
+requests/benchmark_22_cases/
+
+# Public RoB metadata and empty resource directory marker
+!resources/rob/catalog.json
+!resources/rob/text/
+resources/rob/text/*
+!resources/rob/text/.gitkeep

@@ -1,0 +1,26 @@
+{
+  "case_id": "demo_case",
+  "failed_review_count": 0,
+  "candidate_reviews": [
+    {
+      "prediction_id": "ev_1",
+      "article_id": "article_a",
+      "review": {
+        "prediction_id": "ev_1",
+        "disposition": "keep_as_valid_candidate",
+        "evidence_role": "main_analysis_candidate",
+        "reason": "synthetic fixture"
+      }
+    },
+    {
+      "prediction_id": "ev_2",
+      "article_id": "article_b",
+      "review": {
+        "prediction_id": "ev_2",
+        "disposition": "keep_as_valid_candidate",
+        "evidence_role": "main_analysis_candidate",
+        "reason": "synthetic fixture"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "components": [
+    "miners",
+    "evidence_extraction",
+    "evidence_analysis"
+  ],
+  "note": "Source layout uses functional names; historical migration mapping is kept outside this repository."
+}
